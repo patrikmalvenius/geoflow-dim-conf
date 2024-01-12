@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  pgdb:
+    build: ./
+
+    container_name: pgdb
+
+    env_file:
+      - ./pg.env
+
+    ports:
+      - 5418:5432
+  geoflow:
+    image: geoflow-dim
+    volumes:
+      - ./config:/config
+      - ./example_data/10_268_594/bag:/data/poly
+      - ./example_data/10_268_594/true-ortho:/data/img
+      - ./example_data/10_268_594/laz/2020_dim:/data/laz/2020_dim
+      - ./example_data/10_268_594/laz/ahn3:/data/laz/ahn3
+      - ./example_data/10_268_594/laz/ahn4:/data/laz/ahn4
+      - ./tmp:/tmp
+      - ./output:/data/output
+    environment:
+      PG_OUTPUT: ${PG_OUTPUT}
+    tty: true
