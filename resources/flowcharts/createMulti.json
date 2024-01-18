@@ -1,11 +1,11 @@
 {
   "globals": {
-    "GF_PROCESS_CRS": ["", "str", "EPSG:2154"],
+    "GF_PROCESS_CRS": ["", "str", "EPSG:5698"],
     "GF_PROCESS_OFFSET_OVERRIDE": ["", "bool", true],
     "GF_PROCESS_OFFSET_X": ["", "float", 380950.29],
     "GF_PROCESS_OFFSET_Y": ["", "float", 0.0],
     "GF_PROCESS_OFFSET_Z": ["", "float", 0.0],
-    "OUTPUT_CRS": ["", "str", "EPSG:2154"],
+    "OUTPUT_CRS": ["", "str", "EPSG:5698"],
     "output_file": ["output (glb) file", "str", ""],
     "output_ogr": ["", "str", ""],
     "output_overwrite_layers": ["", "bool", false],
@@ -27,7 +27,7 @@
         "ping": false
       },
       "parameters": {
-        "inCRS": "epsg:2154",
+        "inCRS": "epsg:5698",
         "max_x": 0.0,
         "max_y": 0.0,
         "max_z": 0.0,

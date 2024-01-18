@@ -7,7 +7,7 @@
     "CITYJSON_TRANSLATE_X": ["", "float", 380950.29],
     "CITYJSON_TRANSLATE_Y": ["", "float", 6263549.0],
     "CITYJSON_TRANSLATE_Z": ["", "float", 0.0],
-    "GF_PROCESS_CRS": ["", "str", "EPSG:2154"],
+    "GF_PROCESS_CRS": ["", "str", "EPSG:5698"],
     "GF_PROCESS_OFFSET_OVERRIDE": ["", "bool", true],
     "GF_PROCESS_OFFSET_X": ["offset in X coordinate", "float", 37470.0],
     "GF_PROCESS_OFFSET_Y": ["offset in Y coordinate", "float", 414780.5],
@@ -24,7 +24,7 @@
       "/mnt/Data/LocalData/temp/one/crop/NL.IMBAG.Pand.1676100000437038_AHN3.las"
     ],
     "INPUT_ROOFLINES": ["", "str", ""],
-    "OUTPUT_CRS": ["", "str", "EPSG:2154"],
+    "OUTPUT_CRS": ["", "str", "EPSG:5698"],
     "OUTPUT_JSONL": [
       "",
       "str",

@@ -48,8 +48,8 @@ path = '/data/laz/ahn3/LHD_FXX_0380_6264_PTS_C_LAMB93_IGN69.copc.laz'
 
 # Algemene gebouw reconstructie parameters
 [output.reconstruction_parameters]
-GF_PROCESS_CRS="EPSG:2154"
-OUTPUT_CRS="EPSG:2154"
+GF_PROCESS_CRS="EPSG:5698"
+OUTPUT_CRS="EPSG:5698"
 CITYJSON_TRANSLATE_X=380950.29999999999
 CITYJSON_TRANSLATE_Y=6263549.0
 CITYJSON_TRANSLATE_Z=0.0
@@ -86,14 +86,14 @@ plane_reg__axis_symmetry=false
 # Specifieke parameters voor DIM gebouw reconstructie (kopieer parameters uit de algemene sectie hiernaartoe)
 [output.reconstruction_parameters_dim]
 optimisation_data_term=6.0
-GF_PROCESS_CRS="EPSG:2154"
+GF_PROCESS_CRS="EPSG:5698"
 # Specifieke parameters voor LiDAR gebouw reconstructie (kopieer paremeters uit de algemene sectie hiernaartoe)
 [output.reconstruction_parameters_lidar]
-GF_PROCESS_CRS="EPSG:2154"
+GF_PROCESS_CRS="EPSG:5698"
 
 # Bestandsbenaming voor tijdelijke bestanden en output bestanden
 [output]
-GF_PROCESS_CRS="EPSG:2154"
+GF_PROCESS_CRS="EPSG:5698"
 path = '/tmp'
 
 # {bid} will be replaced by building identifier
