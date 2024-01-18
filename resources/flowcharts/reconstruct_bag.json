@@ -1,70 +1,18 @@
 {
   "globals": {
-    "BID": [
-      "Building identifier",
-      "str",
-      "NL.IMBAG.Pand.1676100000437038"
-    ],
-    "CITYJSON_SCALE_X": [
-      "",
-      "float",
-      0.0010000000474974513
-    ],
-    "CITYJSON_SCALE_Y": [
-      "",
-      "float",
-      0.0010000000474974513
-    ],
-    "CITYJSON_SCALE_Z": [
-      "",
-      "float",
-      0.0010000000474974513
-    ],
-    "CITYJSON_TRANSLATE_X": [
-      "",
-      "float",
-      171800.0
-    ],
-    "CITYJSON_TRANSLATE_Y": [
-      "",
-      "float",
-      472700.0
-    ],
-    "CITYJSON_TRANSLATE_Z": [
-      "",
-      "float",
-      0.0
-    ],
-    "GF_PROCESS_CRS": [
-      "",
-      "str",
-      "EPSG:7415"
-    ],
-    "GF_PROCESS_OFFSET_OVERRIDE": [
-      "",
-      "bool",
-      true
-    ],
-    "GF_PROCESS_OFFSET_X": [
-      "offset in X coordinate",
-      "float",
-      37470.0
-    ],
-    "GF_PROCESS_OFFSET_Y": [
-      "offset in Y coordinate",
-      "float",
-      414780.5
-    ],
-    "GF_PROCESS_OFFSET_Z": [
-      "offset in Z coordinate",
-      "float",
-      0.0
-    ],
-    "GROUND_ELEVATION": [
-      "",
-      "float",
-      6.244999885559082
-    ],
+    "BID": ["Building identifier", "str", "NL.IMBAG.Pand.1676100000437038"],
+    "CITYJSON_SCALE_X": ["", "float", 0.0010000000474974513],
+    "CITYJSON_SCALE_Y": ["", "float", 0.0010000000474974513],
+    "CITYJSON_SCALE_Z": ["", "float", 0.0010000000474974513],
+    "CITYJSON_TRANSLATE_X": ["", "float", 380950.29],
+    "CITYJSON_TRANSLATE_Y": ["", "float", 6263549.0],
+    "CITYJSON_TRANSLATE_Z": ["", "float", 0.0],
+    "GF_PROCESS_CRS": ["", "str", "EPSG:2154"],
+    "GF_PROCESS_OFFSET_OVERRIDE": ["", "bool", true],
+    "GF_PROCESS_OFFSET_X": ["offset in X coordinate", "float", 37470.0],
+    "GF_PROCESS_OFFSET_Y": ["offset in Y coordinate", "float", 414780.5],
+    "GF_PROCESS_OFFSET_Z": ["offset in Z coordinate", "float", 0.0],
+    "GROUND_ELEVATION": ["", "float", 6.244999885559082],
     "INPUT_FOOTPRINT": [
       "",
       "str",
@@ -75,199 +23,55 @@
       "str",
       "/mnt/Data/LocalData/temp/one/crop/NL.IMBAG.Pand.1676100000437038_AHN3.las"
     ],
-    "OUTPUT_CRS": [
-      "",
-      "str",
-      "EPSG:7415"
-    ],
+    "OUTPUT_CRS": ["", "str", "EPSG:2154"],
     "OUTPUT_JSONL": [
       "",
       "str",
       "/mnt/Data/LocalData/temp/one/reconstruct/NL.IMBAG.Pand.1676100000437038.city.jsonl"
     ],
-    "clip_ground": [
-      "",
-      "bool",
-      true
-    ],
-    "line_detect__epsilon": [
-      "",
-      "float",
-      1.0
-    ],
-    "lod13__step_height": [
-      "",
-      "float",
-      3.0
-    ],
-    "lod1_extrude_to_max": [
-      "",
-      "bool",
-      false
-    ],
-    "normal_estimate__k": [
-      "",
-      "int",
-      5
-    ],
-    "optimisation_data_term": [
-      "",
-      "float",
-      8.0
-    ],
-    "plane_detect__epsilon": [
-      "",
-      "float",
-      0.30000001192092896
-    ],
-    "plane_detect__k": [
-      "",
-      "int",
-      15
-    ],
-    "plane_detect__min_points": [
-      "",
-      "int",
-      15
-    ],
-    "plane_detect__normal_angle": [
-      "",
-      "float",
-      0.75
-    ],
-    "plane_detect__ransac_cluster_epsilon": [
-      "",
-      "float",
-      0.30000001192092896
-    ],
-    "plane_detect__ransac_probability": [
-      "",
-      "float",
-      0.05000000074505806
-    ],
-    "plane_detect__use_ransac": [
-      "",
-      "bool",
-      false
-    ],
-    "plane_reg__angle": [
-      "",
-      "float",
-      10.0
-    ],
-    "plane_reg__offset": [
-      "",
-      "float",
-      0.4000000059604645
-    ],
-    "plane_reg__parallelism":[
-      "",
-      "bool",
-      false
-    ],
-    "plane_reg__orthogonality":[
-      "",
-      "bool",
-      false
-    ],
-    "plane_reg__coplanarity":[
-      "",
-      "bool",
-      false
-    ],
-    "plane_reg__axis_symmetry":[
-      "",
-      "bool",
-      false
-    ],
-    "skip_attribute_name": [
-      "",
-      "str",
-      "kas_warenhuis"
-    ],
-    "skip_lod12": [
-      "",
-      "bool",
-      false
-    ],
-    "skip_lod13": [
-      "",
-      "bool",
-      false
-    ],
-    "skip_lod22": [
-      "",
-      "bool",
-      false
-    ],
-    "thin_nth": [
-      "",
-      "int",
-      0
-    ],
-    "thres_alpha": [
-      "",
-      "float",
-      0.25
-    ],
-    "thres_reg_line_dist": [
-      "",
-      "float",
-      0.800000011920929
-    ],
-    "thres_reg_line_ext": [
-      "",
-      "float",
-      3.0
-    ],
-    "thres_tri_snap": [
-      "",
-      "float",
-      0.05000000074505806
-    ],
-    "thres_triangulate_snap": [
-      "",
-      "int",
-      4
-    ],
-    "thres_val3dity_d2p": [
-      "",
-      "float",
-      0.0010000000474974513
-    ]
+    "clip_ground": ["", "bool", true],
+    "line_detect__epsilon": ["", "float", 1.0],
+    "lod13__step_height": ["", "float", 3.0],
+    "lod1_extrude_to_max": ["", "bool", false],
+    "normal_estimate__k": ["", "int", 5],
+    "optimisation_data_term": ["", "float", 8.0],
+    "plane_detect__epsilon": ["", "float", 0.30000001192092896],
+    "plane_detect__k": ["", "int", 15],
+    "plane_detect__min_points": ["", "int", 15],
+    "plane_detect__normal_angle": ["", "float", 0.75],
+    "plane_detect__ransac_cluster_epsilon": ["", "float", 0.30000001192092896],
+    "plane_detect__ransac_probability": ["", "float", 0.05000000074505806],
+    "plane_detect__use_ransac": ["", "bool", false],
+    "plane_reg__angle": ["", "float", 10.0],
+    "plane_reg__offset": ["", "float", 0.4000000059604645],
+    "plane_reg__parallelism": ["", "bool", false],
+    "plane_reg__orthogonality": ["", "bool", false],
+    "plane_reg__coplanarity": ["", "bool", false],
+    "plane_reg__axis_symmetry": ["", "bool", false],
+    "skip_attribute_name": ["", "str", "kas_warenhuis"],
+    "skip_lod12": ["", "bool", false],
+    "skip_lod13": ["", "bool", false],
+    "skip_lod22": ["", "bool", false],
+    "thin_nth": ["", "int", 0],
+    "thres_alpha": ["", "float", 0.25],
+    "thres_reg_line_dist": ["", "float", 0.800000011920929],
+    "thres_reg_line_ext": ["", "float", 3.0],
+    "thres_tri_snap": ["", "float", 0.05000000074505806],
+    "thres_triangulate_snap": ["", "int", 4],
+    "thres_val3dity_d2p": ["", "float", 0.0010000000474974513]
   },
   "nodes": {
     "AlphaShape": {
       "connections": {
         "alpha_rings": [
-          [
-            "DetectLines",
-            "edge_points"
-          ],
-          [
-            "SegmentRasterise",
-            "alpha_rings"
-          ],
-          [
-            "SkipReplaceTester",
-            "alpha_rings"
-          ]
+          ["DetectLines", "edge_points"],
+          ["SegmentRasterise", "alpha_rings"],
+          ["SkipReplaceTester", "alpha_rings"]
         ],
-        "alpha_triangles": [
-          [
-            "SegmentRasterise",
-            "triangles"
-          ]
-        ],
+        "alpha_triangles": [["SegmentRasterise", "triangles"]],
         "roofplane_ids": [
-          [
-            "DetectLines",
-            "roofplane_ids"
-          ],
-          [
-            "SegmentRasterise",
-            "roofplane_ids"
-          ]
+          ["DetectLines", "roofplane_ids"],
+          ["SegmentRasterise", "roofplane_ids"]
         ]
       },
       "marked_inputs": {
@@ -289,23 +93,12 @@
         "optimal_only_if_needed": true,
         "thres_alpha": "{{thres_alpha}}"
       },
-      "position": [
-        1263.1005859375,
-        186.20001220703125
-      ],
-      "type": [
-        "building-reconstruction",
-        "AlphaShape"
-      ]
+      "position": [1263.1005859375, 186.20001220703125],
+      "type": ["building-reconstruction", "AlphaShape"]
     },
     "AlphaShape-ground": {
       "connections": {
-        "alpha_triangles": [
-          [
-            "SegmentRasterise",
-            "ground_triangles"
-          ]
-        ]
+        "alpha_triangles": [["SegmentRasterise", "ground_triangles"]]
       },
       "marked_inputs": {
         "pts_per_roofplane": false,
@@ -326,23 +119,12 @@
         "optimal_only_if_needed": true,
         "thres_alpha": 0.25
       },
-      "position": [
-        1271.0,
-        520.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "AlphaShape"
-      ]
+      "position": [1271.0, 520.0],
+      "type": ["building-reconstruction", "AlphaShape"]
     },
     "ArrDissolve-LoD13": {
       "connections": {
-        "arrangement": [
-          [
-            "TriSnap-LoD13",
-            "arrangement"
-          ]
-        ]
+        "arrangement": [["TriSnap-LoD13", "arrangement"]]
       },
       "marked_inputs": {
         "arrangement": false,
@@ -364,23 +146,12 @@
         "skip_execution": "{{skip_lod13}}",
         "step_height_threshold": "{{lod13__step_height}}"
       },
-      "position": [
-        2856.0,
-        243.65283203125
-      ],
-      "type": [
-        "building-reconstruction",
-        "ArrDissolve"
-      ]
+      "position": [2856.0, 243.65283203125],
+      "type": ["building-reconstruction", "ArrDissolve"]
     },
     "ArrDissolve-LoD22": {
       "connections": {
-        "arrangement": [
-          [
-            "TriSnap-LoD22",
-            "arrangement"
-          ]
-        ]
+        "arrangement": [["TriSnap-LoD22", "arrangement"]]
       },
       "marked_inputs": {
         "arrangement": false,
@@ -402,23 +173,12 @@
         "skip_execution": "{{skip_lod22}}",
         "step_height_threshold": 1.0
       },
-      "position": [
-        2857.0,
-        578.65283203125
-      ],
-      "type": [
-        "building-reconstruction",
-        "ArrDissolve"
-      ]
+      "position": [2857.0, 578.65283203125],
+      "type": ["building-reconstruction", "ArrDissolve"]
     },
     "ArrDissolveLoD12": {
       "connections": {
-        "arrangement": [
-          [
-            "TriSnap-LoD12",
-            "arrangement"
-          ]
-        ]
+        "arrangement": [["TriSnap-LoD12", "arrangement"]]
       },
       "marked_inputs": {
         "arrangement": false,
@@ -440,23 +200,12 @@
         "skip_execution": "{{skip_lod12}}",
         "step_height_threshold": 1.0
       },
-      "position": [
-        2853.0,
-        -77.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "ArrDissolve"
-      ]
+      "position": [2853.0, -77.0],
+      "type": ["building-reconstruction", "ArrDissolve"]
     },
     "ArrExtrLoD12": {
       "connections": {
-        "multisolid": [
-          [
-            "FacesSelector-LoD12",
-            "faces_B"
-          ]
-        ]
+        "multisolid": [["FacesSelector-LoD12", "faces_B"]]
       },
       "marked_inputs": {
         "arrangement": false,
@@ -476,23 +225,12 @@
         "lod1_extrude_to_max": "{{lod1_extrude_to_max}}",
         "snap_tolerance_exp": "{{thres_triangulate_snap}}"
       },
-      "position": [
-        3245.0,
-        -41.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "ArrExtruder"
-      ]
+      "position": [3245.0, -41.0],
+      "type": ["building-reconstruction", "ArrExtruder"]
     },
     "ArrExtruder-LoD13": {
       "connections": {
-        "multisolid": [
-          [
-            "FacesSelector-LoD13",
-            "faces_B"
-          ]
-        ]
+        "multisolid": [["FacesSelector-LoD13", "faces_B"]]
       },
       "marked_inputs": {
         "arrangement": false,
@@ -512,23 +250,12 @@
         "lod1_extrude_to_max": "{{lod1_extrude_to_max}}",
         "snap_tolerance_exp": "{{thres_triangulate_snap}}"
       },
-      "position": [
-        3243.39990234375,
-        426.2528076171875
-      ],
-      "type": [
-        "building-reconstruction",
-        "ArrExtruder"
-      ]
+      "position": [3243.39990234375, 426.2528076171875],
+      "type": ["building-reconstruction", "ArrExtruder"]
     },
     "ArrExtruder-LoD22": {
       "connections": {
-        "multisolid": [
-          [
-            "FacesSelector-LoD22",
-            "faces_B"
-          ]
-        ]
+        "multisolid": [["FacesSelector-LoD22", "faces_B"]]
       },
       "marked_inputs": {
         "arrangement": false,
@@ -548,30 +275,15 @@
         "lod1_extrude_to_max": false,
         "snap_tolerance_exp": "{{thres_triangulate_snap}}"
       },
-      "position": [
-        3243.39990234375,
-        926.2528076171875
-      ],
-      "type": [
-        "building-reconstruction",
-        "ArrExtruder"
-      ]
+      "position": [3243.39990234375, 926.2528076171875],
+      "type": ["building-reconstruction", "ArrExtruder"]
     },
     "AttributeTester": {
       "connections": {
         "result": [
-          [
-            "AlphaShape-ground",
-            "skip"
-          ],
-          [
-            "AlphaShape",
-            "skip"
-          ],
-          [
-            "SkipReplaceTester",
-            "skip"
-          ]
+          ["AlphaShape-ground", "skip"],
+          ["AlphaShape", "skip"],
+          ["SkipReplaceTester", "skip"]
         ]
       },
       "marked_inputs": {
@@ -583,23 +295,12 @@
       "parameters": {
         "attribute_name": "{{skip_attribute_name}}"
       },
-      "position": [
-        962.5,
-        62.3179931640625
-      ],
-      "type": [
-        "building-reconstruction",
-        "AttributeTester"
-      ]
+      "position": [962.5, 62.3179931640625],
+      "type": ["building-reconstruction", "AttributeTester"]
     },
     "BuildArrFromLines": {
       "connections": {
-        "arrangement": [
-          [
-            "OptimiseArrangmentGrid",
-            "arrangement"
-          ]
-        ]
+        "arrangement": [["OptimiseArrangmentGrid", "arrangement"]]
       },
       "marked_inputs": {
         "footprint": true,
@@ -616,14 +317,8 @@
         "insert_with_snap": false,
         "max_arr_complexity": 400
       },
-      "position": [
-        2443.19970703125,
-        246.30029296875
-      ],
-      "type": [
-        "building-reconstruction",
-        "BuildArrFromLines"
-      ]
+      "position": [2443.19970703125, 246.30029296875],
+      "type": ["building-reconstruction", "BuildArrFromLines"]
     },
     "CityJSONFeatureWriter": {
       "marked_inputs": {
@@ -696,23 +391,12 @@
         "translate_y": "{{CITYJSON_TRANSLATE_Y}}",
         "translate_z": "{{CITYJSON_TRANSLATE_Z}}"
       },
-      "position": [
-        4605.0,
-        348.0
-      ],
-      "type": [
-        "CoreIO",
-        "CityJSONFeatureWriter"
-      ]
+      "position": [4605.0, 348.0],
+      "type": ["CoreIO", "CityJSONFeatureWriter"]
     },
     "DetectLines": {
       "connections": {
-        "edge_segments": [
-          [
-            "RegulariseLines",
-            "edge_segments"
-          ]
-        ]
+        "edge_segments": [["RegulariseLines", "edge_segments"]]
       },
       "marked_inputs": {
         "edge_points": false,
@@ -738,117 +422,37 @@
         "remove_overlap": true,
         "snap_threshold": 1.0
       },
-      "position": [
-        1656.3016357421875,
-        236.7999267578125
-      ],
-      "type": [
-        "building-reconstruction",
-        "DetectLines"
-      ]
+      "position": [1656.3016357421875, 236.7999267578125],
+      "type": ["building-reconstruction", "DetectLines"]
     },
     "DetectPlanes": {
       "connections": {
-        "plane_adj": [
-          [
-            "PlaneIntersect",
-            "plane_adj"
-          ]
-        ],
+        "plane_adj": [["PlaneIntersect", "plane_adj"]],
         "pts_per_roofplane": [
-          [
-            "AlphaShape",
-            "pts_per_roofplane"
-          ],
-          [
-            "DetectLines",
-            "pts_per_roofplane"
-          ],
-          [
-            "PC2MeshQuality-LoD11",
-            "ipoints"
-          ],
-          [
-            "PC2MeshQuality-LoD12",
-            "ipoints"
-          ],
-          [
-            "PC2MeshQuality-LoD13",
-            "ipoints"
-          ],
-          [
-            "OptimiseArrangmentGrid",
-            "pts_per_roofplane"
-          ],
-          [
-            "PC2MeshQuality-LoD22",
-            "ipoints"
-          ],
-          [
-            "PlaneIntersect",
-            "pts_per_roofplane"
-          ],
-          [
-            "SegmentRasterise",
-            "pts_per_roofplane"
-          ]
+          ["AlphaShape", "pts_per_roofplane"],
+          ["DetectLines", "pts_per_roofplane"],
+          ["PC2MeshQuality-LoD11", "ipoints"],
+          ["PC2MeshQuality-LoD12", "ipoints"],
+          ["PC2MeshQuality-LoD13", "ipoints"],
+          ["OptimiseArrangmentGrid", "pts_per_roofplane"],
+          ["PC2MeshQuality-LoD22", "ipoints"],
+          ["PlaneIntersect", "pts_per_roofplane"],
+          ["SegmentRasterise", "pts_per_roofplane"]
         ],
-        "roof_elevation_50p": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ],
+        "roof_elevation_50p": [["CityJSONFeatureWriter", "attributes"]],
         "roof_elevation_70p": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ],
-          [
-            "LOD1Extruder-LoD11",
-            "roof_elevation"
-          ]
+          ["CityJSONFeatureWriter", "attributes"],
+          ["LOD1Extruder-LoD11", "roof_elevation"]
         ],
-        "roof_elevation_max": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ],
-        "roof_elevation_min": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ],
-        "roof_pt_cnt": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ],
+        "roof_elevation_max": [["CityJSONFeatureWriter", "attributes"]],
+        "roof_elevation_min": [["CityJSONFeatureWriter", "attributes"]],
+        "roof_pt_cnt": [["CityJSONFeatureWriter", "attributes"]],
         "roof_type": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ],
-          [
-            "SkipReplaceTester",
-            "roof_type"
-          ]
+          ["CityJSONFeatureWriter", "attributes"],
+          ["SkipReplaceTester", "roof_type"]
         ],
-        "unsegmented_pt_cnt": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ],
-        "wall_pt_cnt": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "unsegmented_pt_cnt": [["CityJSONFeatureWriter", "attributes"]],
+        "wall_pt_cnt": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "points": true
@@ -891,26 +495,14 @@
         "regularize_parallelism": "{{plane_reg__parallelism}}",
         "use_ransac": "{{plane_detect__use_ransac}}"
       },
-      "position": [
-        902.0,
-        139.79998779296875
-      ],
-      "type": [
-        "building-reconstruction",
-        "DetectPlanes"
-      ]
+      "position": [902.0, 139.79998779296875],
+      "type": ["building-reconstruction", "DetectPlanes"]
     },
     "DetectPlanes-ground": {
       "connections": {
         "pts_per_roofplane": [
-          [
-            "AlphaShape-ground",
-            "pts_per_roofplane"
-          ],
-          [
-            "OptimiseArrangmentGrid",
-            "ground_pts_per_roofplane"
-          ]
+          ["AlphaShape-ground", "pts_per_roofplane"],
+          ["OptimiseArrangmentGrid", "ground_pts_per_roofplane"]
         ]
       },
       "marked_inputs": {
@@ -954,30 +546,15 @@
         "regularize_parallelism": false,
         "use_ransac": "{{plane_detect__use_ransac}}"
       },
-      "position": [
-        918.0,
-        468.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "DetectPlanes"
-      ]
+      "position": [918.0, 468.0],
+      "type": ["building-reconstruction", "DetectPlanes"]
     },
     "FacesSelector-LoD12": {
       "connections": {
         "faces": [
-          [
-            "CityJSONFeatureWriter",
-            "geometry_lod12"
-          ],
-          [
-            "PolygonTriangulator-LoD12",
-            "polygons"
-          ],
-          [
-            "Validator-LoD12",
-            "input_geom"
-          ]
+          ["CityJSONFeatureWriter", "geometry_lod12"],
+          ["PolygonTriangulator-LoD12", "polygons"],
+          ["Validator-LoD12", "input_geom"]
         ]
       },
       "marked_inputs": {
@@ -989,30 +566,15 @@
       "marked_outputs": {
         "faces": true
       },
-      "position": [
-        3542.0,
-        -41.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "FacesSelector"
-      ]
+      "position": [3542.0, -41.0],
+      "type": ["building-reconstruction", "FacesSelector"]
     },
     "FacesSelector-LoD13": {
       "connections": {
         "faces": [
-          [
-            "CityJSONFeatureWriter",
-            "geometry_lod13"
-          ],
-          [
-            "PolygonTriangulator-LoD13",
-            "polygons"
-          ],
-          [
-            "Validator-LoD13",
-            "input_geom"
-          ]
+          ["CityJSONFeatureWriter", "geometry_lod13"],
+          ["PolygonTriangulator-LoD13", "polygons"],
+          ["Validator-LoD13", "input_geom"]
         ]
       },
       "marked_inputs": {
@@ -1024,30 +586,15 @@
       "marked_outputs": {
         "faces": true
       },
-      "position": [
-        3540.171875,
-        426.635986328125
-      ],
-      "type": [
-        "building-reconstruction",
-        "FacesSelector"
-      ]
+      "position": [3540.171875, 426.635986328125],
+      "type": ["building-reconstruction", "FacesSelector"]
     },
     "FacesSelector-LoD22": {
       "connections": {
         "faces": [
-          [
-            "CityJSONFeatureWriter",
-            "geometry_lod22"
-          ],
-          [
-            "PolygonTriangulator-LoD22",
-            "polygons"
-          ],
-          [
-            "Validator-LoD22",
-            "input_geom"
-          ]
+          ["CityJSONFeatureWriter", "geometry_lod22"],
+          ["PolygonTriangulator-LoD22", "polygons"],
+          ["Validator-LoD22", "input_geom"]
         ]
       },
       "marked_inputs": {
@@ -1059,23 +606,12 @@
       "marked_outputs": {
         "faces": true
       },
-      "position": [
-        3540.171875,
-        926.635986328125
-      ],
-      "type": [
-        "building-reconstruction",
-        "FacesSelector"
-      ]
+      "position": [3540.171875, 926.635986328125],
+      "type": ["building-reconstruction", "FacesSelector"]
     },
     "Ground_elevation": {
       "connections": {
-        "value": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "value": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_outputs": {
         "value": false
@@ -1083,34 +619,16 @@
       "parameters": {
         "value": "g.GROUND_ELEVATION + g.GF_PROCESS_OFFSET_Z"
       },
-      "position": [
-        4120.0,
-        301.0
-      ],
-      "type": [
-        "Core",
-        "FloatExpr"
-      ]
+      "position": [4120.0, 301.0],
+      "type": ["Core", "FloatExpr"]
     },
     "Ground_elevation_woffset": {
       "connections": {
         "value": [
-          [
-            "ArrExtrLoD12",
-            "floor_elevation"
-          ],
-          [
-            "ArrExtruder-LoD13",
-            "floor_elevation"
-          ],
-          [
-            "ArrExtruder-LoD22",
-            "floor_elevation"
-          ],
-          [
-            "LOD1Extruder-LoD11",
-            "floor_elevation"
-          ]
+          ["ArrExtrLoD12", "floor_elevation"],
+          ["ArrExtruder-LoD13", "floor_elevation"],
+          ["ArrExtruder-LoD22", "floor_elevation"],
+          ["LOD1Extruder-LoD11", "floor_elevation"]
         ]
       },
       "marked_outputs": {
@@ -1119,23 +637,12 @@
       "parameters": {
         "value": "g.GROUND_ELEVATION"
       },
-      "position": [
-        2440.0,
-        -37.0
-      ],
-      "type": [
-        "Core",
-        "FloatExpr"
-      ]
+      "position": [2440.0, -37.0],
+      "type": ["Core", "FloatExpr"]
     },
     "LASLoader": {
       "connections": {
-        "points": [
-          [
-            "SplitGroundBuilding",
-            "point_cloud"
-          ]
-        ]
+        "points": [["SplitGroundBuilding", "point_cloud"]]
       },
       "marked_outputs": {
         "classification": false,
@@ -1151,34 +658,16 @@
         "thin_nth": "{{thin_nth}}",
         "wkt": ""
       },
-      "position": [
-        389.5,
-        213.0679931640625
-      ],
-      "type": [
-        "io-las",
-        "LASLoader"
-      ]
+      "position": [389.5, 213.0679931640625],
+      "type": ["io-las", "LASLoader"]
     },
     "LOD1Extruder-LoD11": {
       "connections": {
         "mesh": [
-          [
-            "FacesSelector-LoD12",
-            "faces_A"
-          ],
-          [
-            "FacesSelector-LoD13",
-            "faces_A"
-          ],
-          [
-            "FacesSelector-LoD22",
-            "faces_A"
-          ],
-          [
-            "PolygonTriangulator-LoD11",
-            "polygons"
-          ]
+          ["FacesSelector-LoD12", "faces_A"],
+          ["FacesSelector-LoD13", "faces_A"],
+          ["FacesSelector-LoD22", "faces_A"],
+          ["PolygonTriangulator-LoD11", "polygons"]
         ]
       },
       "marked_inputs": {
@@ -1191,46 +680,20 @@
         "mesh": false,
         "surface_types": false
       },
-      "position": [
-        2365.34375,
-        -309.63592529296875
-      ],
-      "type": [
-        "building-reconstruction",
-        "LOD1Extruder"
-      ]
+      "position": [2365.34375, -309.63592529296875],
+      "type": ["building-reconstruction", "LOD1Extruder"]
     },
     "OGRLoader": {
       "connections": {
-        "area": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ],
+        "area": [["CityJSONFeatureWriter", "attributes"]],
         "attributes": [
-          [
-            "AttributeTester",
-            "attributes"
-          ],
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
+          ["AttributeTester", "attributes"],
+          ["CityJSONFeatureWriter", "attributes"]
         ],
         "linear_rings": [
-          [
-            "BuildArrFromLines",
-            "footprint"
-          ],
-          [
-            "CityJSONFeatureWriter",
-            "footprints"
-          ],
-          [
-            "LOD1Extruder-LoD11",
-            "polygon"
-          ]
+          ["BuildArrFromLines", "footprint"],
+          ["CityJSONFeatureWriter", "footprints"],
+          ["LOD1Extruder-LoD11", "polygon"]
         ]
       },
       "marked_outputs": {
@@ -1249,30 +712,15 @@
         "layer_name": "",
         "output_fid": false
       },
-      "position": [
-        386.5,
-        65.0679931640625
-      ],
-      "type": [
-        "io-gdal",
-        "OGRLoader"
-      ]
+      "position": [386.5, 65.0679931640625],
+      "type": ["io-gdal", "OGRLoader"]
     },
     "OptimiseArrangmentGrid": {
       "connections": {
         "arrangement": [
-          [
-            "ArrDissolve-LoD13",
-            "arrangement"
-          ],
-          [
-            "ArrDissolve-LoD22",
-            "arrangement"
-          ],
-          [
-            "ArrDissolveLoD12",
-            "arrangement"
-          ]
+          ["ArrDissolve-LoD13", "arrangement"],
+          ["ArrDissolve-LoD22", "arrangement"],
+          ["ArrDissolveLoD12", "arrangement"]
         ]
       },
       "marked_inputs": {
@@ -1296,14 +744,8 @@
         "use_ground": "{{clip_ground}}",
         "z_percentile": 0.8999999761581421
       },
-      "position": [
-        2402.5,
-        310.3999938964844
-      ],
-      "type": [
-        "building-reconstruction",
-        "OptimiseArrangmentGrid"
-      ]
+      "position": [2402.5, 310.3999938964844],
+      "type": ["building-reconstruction", "OptimiseArrangmentGrid"]
     },
     "PC2MeshQuality-LoD11": {
       "marked_inputs": {
@@ -1320,23 +762,12 @@
         "mesh_error_f": true,
         "point_errors": false
       },
-      "position": [
-        2749.0,
-        -378.864013671875
-      ],
-      "type": [
-        "building-reconstruction",
-        "PC2MeshQuality"
-      ]
+      "position": [2749.0, -378.864013671875],
+      "type": ["building-reconstruction", "PC2MeshQuality"]
     },
     "PC2MeshQuality-LoD12": {
       "connections": {
-        "mesh_error_f": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "mesh_error_f": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "face_ids": false,
@@ -1352,23 +783,12 @@
         "mesh_error_f": true,
         "point_errors": false
       },
-      "position": [
-        3911.0,
-        -16.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "PC2MeshQuality"
-      ]
+      "position": [3911.0, -16.0],
+      "type": ["building-reconstruction", "PC2MeshQuality"]
     },
     "PC2MeshQuality-LoD13": {
       "connections": {
-        "mesh_error_f": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "mesh_error_f": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "face_ids": false,
@@ -1384,23 +804,12 @@
         "mesh_error_f": true,
         "point_errors": false
       },
-      "position": [
-        3915.0,
-        526.65283203125
-      ],
-      "type": [
-        "building-reconstruction",
-        "PC2MeshQuality"
-      ]
+      "position": [3915.0, 526.65283203125],
+      "type": ["building-reconstruction", "PC2MeshQuality"]
     },
     "PC2MeshQuality-LoD22": {
       "connections": {
-        "mesh_error_f": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "mesh_error_f": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "face_ids": false,
@@ -1416,23 +825,12 @@
         "mesh_error_f": true,
         "point_errors": false
       },
-      "position": [
-        3921.0,
-        1028.65283203125
-      ],
-      "type": [
-        "building-reconstruction",
-        "PC2MeshQuality"
-      ]
+      "position": [3921.0, 1028.65283203125],
+      "type": ["building-reconstruction", "PC2MeshQuality"]
     },
     "PlaneIntersect": {
       "connections": {
-        "lines": [
-          [
-            "RegulariseLines",
-            "ints_segments"
-          ]
-        ]
+        "lines": [["RegulariseLines", "ints_segments"]]
       },
       "marked_inputs": {
         "plane_adj": false,
@@ -1446,29 +844,13 @@
         "min_length": 0.0,
         "min_neighb_pts": 5
       },
-      "position": [
-        1660.8511962890625,
-        405.6999816894531
-      ],
-      "type": [
-        "building-reconstruction",
-        "PlaneIntersect"
-      ]
+      "position": [1660.8511962890625, 405.6999816894531],
+      "type": ["building-reconstruction", "PlaneIntersect"]
     },
     "PolygonTriangulator-LoD11": {
       "connections": {
-        "multi_triangle_collections": [
-          [
-            "PC2MeshQuality-LoD11",
-            "triangles"
-          ]
-        ],
-        "ring_ids": [
-          [
-            "PC2MeshQuality-LoD11",
-            "face_ids"
-          ]
-        ]
+        "multi_triangle_collections": [["PC2MeshQuality-LoD11", "triangles"]],
+        "ring_ids": [["PC2MeshQuality-LoD11", "face_ids"]]
       },
       "marked_inputs": {
         "polygons": false
@@ -1485,35 +867,14 @@
         "output_all_triangles": false,
         "output_mtc_for_every_input": false
       },
-      "position": [
-        2759.0,
-        -497.864013671875
-      ],
-      "type": [
-        "building-reconstruction",
-        "PolygonTriangulator"
-      ]
+      "position": [2759.0, -497.864013671875],
+      "type": ["building-reconstruction", "PolygonTriangulator"]
     },
     "PolygonTriangulator-LoD12": {
       "connections": {
-        "multi_triangle_collections": [
-          [
-            "PC2MeshQuality-LoD12",
-            "triangles"
-          ]
-        ],
-        "ring_ids": [
-          [
-            "PC2MeshQuality-LoD12",
-            "face_ids"
-          ]
-        ],
-        "volumes": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "multi_triangle_collections": [["PC2MeshQuality-LoD12", "triangles"]],
+        "ring_ids": [["PC2MeshQuality-LoD12", "face_ids"]],
+        "volumes": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "polygons": false
@@ -1530,35 +891,14 @@
         "output_all_triangles": false,
         "output_mtc_for_every_input": false
       },
-      "position": [
-        3545.0,
-        48.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "PolygonTriangulator"
-      ]
+      "position": [3545.0, 48.0],
+      "type": ["building-reconstruction", "PolygonTriangulator"]
     },
     "PolygonTriangulator-LoD13": {
       "connections": {
-        "multi_triangle_collections": [
-          [
-            "PC2MeshQuality-LoD13",
-            "triangles"
-          ]
-        ],
-        "ring_ids": [
-          [
-            "PC2MeshQuality-LoD13",
-            "face_ids"
-          ]
-        ],
-        "volumes": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "multi_triangle_collections": [["PC2MeshQuality-LoD13", "triangles"]],
+        "ring_ids": [["PC2MeshQuality-LoD13", "face_ids"]],
+        "volumes": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "polygons": false
@@ -1575,35 +915,14 @@
         "output_all_triangles": false,
         "output_mtc_for_every_input": false
       },
-      "position": [
-        3543.1728515625,
-        522.4730224609375
-      ],
-      "type": [
-        "building-reconstruction",
-        "PolygonTriangulator"
-      ]
+      "position": [3543.1728515625, 522.4730224609375],
+      "type": ["building-reconstruction", "PolygonTriangulator"]
     },
     "PolygonTriangulator-LoD22": {
       "connections": {
-        "multi_triangle_collections": [
-          [
-            "PC2MeshQuality-LoD22",
-            "triangles"
-          ]
-        ],
-        "ring_ids": [
-          [
-            "PC2MeshQuality-LoD22",
-            "face_ids"
-          ]
-        ],
-        "volumes": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "multi_triangle_collections": [["PC2MeshQuality-LoD22", "triangles"]],
+        "ring_ids": [["PC2MeshQuality-LoD22", "face_ids"]],
+        "volumes": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "polygons": false
@@ -1620,23 +939,12 @@
         "output_all_triangles": false,
         "output_mtc_for_every_input": false
       },
-      "position": [
-        3528.1728515625,
-        1029.4730224609375
-      ],
-      "type": [
-        "building-reconstruction",
-        "PolygonTriangulator"
-      ]
+      "position": [3528.1728515625, 1029.4730224609375],
+      "type": ["building-reconstruction", "PolygonTriangulator"]
     },
     "RegulariseLines": {
       "connections": {
-        "exact_regularised_edges": [
-          [
-            "BuildArrFromLines",
-            "lines"
-          ]
-        ]
+        "exact_regularised_edges": [["BuildArrFromLines", "lines"]]
       },
       "marked_inputs": {
         "edge_segments": false,
@@ -1658,34 +966,16 @@
         "extension": "{{thres_reg_line_ext}}",
         "merge_intersection_lines": false
       },
-      "position": [
-        2004.46533203125,
-        253.89376831054688
-      ],
-      "type": [
-        "building-reconstruction",
-        "RegulariseLines"
-      ]
+      "position": [2004.46533203125, 253.89376831054688],
+      "type": ["building-reconstruction", "RegulariseLines"]
     },
     "SegmentRasterise": {
       "connections": {
         "heightfield": [
-          [
-            "ArrDissolve-LoD13",
-            "heightfield"
-          ],
-          [
-            "ArrDissolve-LoD22",
-            "heightfield"
-          ],
-          [
-            "ArrDissolveLoD12",
-            "heightfield"
-          ],
-          [
-            "OptimiseArrangmentGrid",
-            "heightfield"
-          ]
+          ["ArrDissolve-LoD13", "heightfield"],
+          ["ArrDissolve-LoD22", "heightfield"],
+          ["ArrDissolveLoD12", "heightfield"],
+          ["OptimiseArrangmentGrid", "heightfield"]
         ]
       },
       "marked_inputs": {
@@ -1708,48 +998,21 @@
         "megapixel_limit": 600,
         "use_ground": true
       },
-      "position": [
-        2017.0,
-        465.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "SegmentRasterise"
-      ]
+      "position": [2017.0, 465.0],
+      "type": ["building-reconstruction", "SegmentRasterise"]
     },
     "SkipReplaceTester": {
       "connections": {
         "replace": [
-          [
-            "FacesSelector-LoD12",
-            "replace"
-          ],
-          [
-            "FacesSelector-LoD13",
-            "replace"
-          ],
-          [
-            "FacesSelector-LoD22",
-            "replace"
-          ]
+          ["FacesSelector-LoD12", "replace"],
+          ["FacesSelector-LoD13", "replace"],
+          ["FacesSelector-LoD22", "replace"]
         ],
         "skip": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ],
-          [
-            "FacesSelector-LoD12",
-            "skip"
-          ],
-          [
-            "FacesSelector-LoD13",
-            "skip"
-          ],
-          [
-            "FacesSelector-LoD22",
-            "skip"
-          ]
+          ["CityJSONFeatureWriter", "attributes"],
+          ["FacesSelector-LoD12", "skip"],
+          ["FacesSelector-LoD13", "skip"],
+          ["FacesSelector-LoD22", "skip"]
         ]
       },
       "marked_inputs": {
@@ -1765,29 +1028,13 @@
       "parameters": {
         "attribute_name": "{{skip_attribute_name}}"
       },
-      "position": [
-        2399.0,
-        -180.364013671875
-      ],
-      "type": [
-        "building-reconstruction",
-        "SkipReplaceTester"
-      ]
+      "position": [2399.0, -180.364013671875],
+      "type": ["building-reconstruction", "SkipReplaceTester"]
     },
     "SplitGroundBuilding": {
       "connections": {
-        "A": [
-          [
-            "DetectPlanes-ground",
-            "points"
-          ]
-        ],
-        "B": [
-          [
-            "DetectPlanes",
-            "points"
-          ]
-        ]
+        "A": [["DetectPlanes-ground", "points"]],
+        "B": [["DetectPlanes", "points"]]
       },
       "marked_inputs": {
         "point_cloud": false
@@ -1804,23 +1051,12 @@
         "class C": 0,
         "class D": 1
       },
-      "position": [
-        380.5,
-        332.0679931640625
-      ],
-      "type": [
-        "io-las",
-        "PointCloudClassSplit"
-      ]
+      "position": [380.5, 332.0679931640625],
+      "type": ["io-las", "PointCloudClassSplit"]
     },
     "TriSnap-LoD12": {
       "connections": {
-        "arrangement": [
-          [
-            "ArrExtrLoD12",
-            "arrangement"
-          ]
-        ]
+        "arrangement": [["ArrExtrLoD12", "arrangement"]]
       },
       "marked_inputs": {
         "arrangement": false
@@ -1835,23 +1071,12 @@
       "parameters": {
         "dist_thres": "{{thres_tri_snap}}"
       },
-      "position": [
-        2868.0,
-        30.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "TriSnap"
-      ]
+      "position": [2868.0, 30.0],
+      "type": ["building-reconstruction", "TriSnap"]
     },
     "TriSnap-LoD13": {
       "connections": {
-        "arrangement": [
-          [
-            "ArrExtruder-LoD13",
-            "arrangement"
-          ]
-        ]
+        "arrangement": [["ArrExtruder-LoD13", "arrangement"]]
       },
       "marked_inputs": {
         "arrangement": false
@@ -1866,23 +1091,12 @@
       "parameters": {
         "dist_thres": "{{thres_tri_snap}}"
       },
-      "position": [
-        2868.0,
-        353.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "TriSnap"
-      ]
+      "position": [2868.0, 353.0],
+      "type": ["building-reconstruction", "TriSnap"]
     },
     "TriSnap-LoD22": {
       "connections": {
-        "arrangement": [
-          [
-            "ArrExtruder-LoD22",
-            "arrangement"
-          ]
-        ]
+        "arrangement": [["ArrExtruder-LoD22", "arrangement"]]
       },
       "marked_inputs": {
         "arrangement": false
@@ -1897,23 +1111,12 @@
       "parameters": {
         "dist_thres": "{{thres_tri_snap}}"
       },
-      "position": [
-        2866.0,
-        712.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "TriSnap"
-      ]
+      "position": [2866.0, 712.0],
+      "type": ["building-reconstruction", "TriSnap"]
     },
     "Validator-LoD12": {
       "connections": {
-        "errors": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "errors": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "input_geom": false
@@ -1928,23 +1131,12 @@
         "tol_planarity_d2p_": "{{thres_val3dity_d2p}}",
         "tol_planarity_normals_": 20.0
       },
-      "position": [
-        3909.0,
-        -94.0
-      ],
-      "type": [
-        "Val3dity",
-        "Validator"
-      ]
+      "position": [3909.0, -94.0],
+      "type": ["Val3dity", "Validator"]
     },
     "Validator-LoD13": {
       "connections": {
-        "errors": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "errors": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "input_geom": false
@@ -1959,23 +1151,12 @@
         "tol_planarity_d2p_": "{{thres_val3dity_d2p}}",
         "tol_planarity_normals_": 20.0
       },
-      "position": [
-        3916.0,
-        451.0
-      ],
-      "type": [
-        "Val3dity",
-        "Validator"
-      ]
+      "position": [3916.0, 451.0],
+      "type": ["Val3dity", "Validator"]
     },
     "Validator-LoD22": {
       "connections": {
-        "errors": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
+        "errors": [["CityJSONFeatureWriter", "attributes"]]
       },
       "marked_inputs": {
         "input_geom": false
@@ -1990,14 +1171,8 @@
         "tol_planarity_d2p_": "{{thres_val3dity_d2p}}",
         "tol_planarity_normals_": 20.0
       },
-      "position": [
-        3915.0,
-        951.0
-      ],
-      "type": [
-        "Val3dity",
-        "Validator"
-      ]
+      "position": [3915.0, 951.0],
+      "type": ["Val3dity", "Validator"]
     }
   }
 }

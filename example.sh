@@ -1,5 +1,5 @@
 docker compose run geoflow  -c /config/config.toml --keep-tmp-data --only-reconstruct -l DEBUG   
-
+docker compose run geoflow  -c /config/config.toml --keep-tmp-data  -l DEBUG 
 
 FOR DOCKER RUN
 

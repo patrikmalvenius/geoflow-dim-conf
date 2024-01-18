@@ -1,6 +1,8 @@
 import click
 import subprocess
 import fiona
+from fiona.transform import transform_geom
+import tempfile
 import class_definition as cd
 import os.path
 from pathlib import Path
@@ -211,7 +213,7 @@ def run_ortho_rooflines(building_index_file, max_workers, verbose=False):
         lsd_scale = 0.8
         num_intersection = 1
         enable_regularise = True
-        verbose = False
+        verbose = True
 
     args.verbose = verbose
 
@@ -247,10 +249,41 @@ def run_ortho_rooflines(building_index_file, max_workers, verbose=False):
 def run_reconstruct(building_index_file, max_workers, skip_ortholines, config_data=None, verbose=False):
     def get_buildings(building_index_file):
         buildings = list()
-        with fiona.open(building_index_file) as buildings:
-            buildings = [bld for bld in buildings]
+        logging.info("TUSENTALSBANANAER")
+        tmp = tempfile.NamedTemporaryFile()
+        #FIOOOOOOOOOOOOOOONA CREAAAAAAAAAAAAAAAAAAAAAAATEEEE????????????
+        #ELLER SKAPA EN TOM GKPG MAN KAN ANVANDA???????????????
+        #ELLER FORST OPEN W SEN OPEN R?????
+        with fiona.open(building_index_file, ) as building:
+            logging.info("building.crs")
+            logging.info(building.crs)
+
+           # with fiona.open("centroids.gpkg", mode="w", crs=fiona.crs.from_epsg(2154), driver="GPKG",  schema=building.schema,) as dst:
+            #    for feat in building:
+                    # If any feature's polygon is facing "down" (has rings
+                    # wound clockwise), its rings will be reordered to flip
+                    # it "up".
+             #       geom = feat.geometry
+              #      dst.write(fiona.Feature(geometry=geom, properties=feat.properties))
+              #  logging.info("dst.crs")
+              #  logging.info(dst.crs)
+              #  with fiona.open("centroids.gpkg") as newbuildings:
+               #     logging.info("newbuildings.crs")
+                #    logging.info(newbuildings.crs)
+            buildings = [bld for bld in building]
+
+                #logging.info(buildings.crs)
+ 
         return buildings
     def run_geoflow(building, skip_ortholines, config_data, verbose):
+        #¸logging.info("building")
+        #logging.info(building)
+        #logging.info("skip_ortholines")
+        #logging.info(skip_ortholines)
+        #logging.info("config_data")
+        #logging.info(config_data)
+        #logging.info("verbose")
+        #logging.info(verbose)
         def format_parameters(parameters, args):
             for (key, val) in parameters.items():
                 if isinstance(val, bool):
@@ -277,12 +310,15 @@ def run_reconstruct(building_index_file, max_workers, skip_ortholines, config_da
             format_parameters(config_data['output']['reconstruction_parameters_dim'], args)
         else:
             format_parameters(config_data['output']['reconstruction_parameters_lidar'], args)
+        #logging.info("args")
+        #logging.info(args)
         
         return subprocess.run(args)
     
     buildings = get_buildings(building_index_file)
 
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
+
         futures = {executor.submit(run_geoflow, building, skip_ortholines, config_data, verbose): building for building in buildings}
 
         for future in as_completed(futures):

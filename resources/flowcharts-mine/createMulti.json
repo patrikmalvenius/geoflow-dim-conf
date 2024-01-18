@@ -1,82 +1,33 @@
 {
   "globals": {
-    "GF_PROCESS_CRS": [
-      "",
-      "str",
-      "EPSG:7415"
-    ],
-    "GF_PROCESS_OFFSET_OVERRIDE": [
-      "",
-      "bool",
-      true
-    ],
-    "GF_PROCESS_OFFSET_X": [
-      "",
-      "float",
-      171800.0
-    ],
-    "GF_PROCESS_OFFSET_Y": [
-      "",
-      "float",
-      0.0
-    ],
-    "GF_PROCESS_OFFSET_Z": [
-      "",
-      "float",
-      0.0
-    ],
-    "OUTPUT_CRS": [
-      "",
-      "str",
-      "EPSG:7415"
-    ],
-    "output_file": [
-      "output (glb) file",
-      "str",
-      ""
-    ],
-    "output_ogr": [
-      "",
-      "str",
-      ""
-    ],
-    "output_overwrite_layers": [
-      "",
-      "bool",
-      false
-    ],
-    "output_transactions": [
-      "",
-      "bool",
-      true
-    ],
+    "GF_PROCESS_CRS": ["", "str", "EPSG:2154"],
+    "GF_PROCESS_OFFSET_OVERRIDE": ["", "bool", false],
+    "GF_PROCESS_OFFSET_X": ["", "float", 171800.0],
+    "GF_PROCESS_OFFSET_Y": ["", "float", 0.0],
+    "GF_PROCESS_OFFSET_Z": ["", "float", 0.0],
+    "OUTPUT_CRS": ["", "str", "EPSG:2154"],
+    "output_file": ["output (glb) file", "str", ""],
+    "output_ogr": ["", "str", ""],
+    "output_overwrite_layers": ["", "bool", false],
+    "output_transactions": ["", "bool", true],
     "path_features_input_file": [
       "text file with on each line an input CityJSON feature path",
       "str",
       ""
     ],
-    "path_metadata": [
-      "CityJSON features metadata file",
-      "str",
-      ""
-    ]
+    "path_metadata": ["CityJSON features metadata file", "str", ""]
   },
   "nodes": {
     "Box": {
       "connections": {
-        "ping": [
-          [
-            "processFeatures",
-            "processFeatures.wait"
-          ]
-        ]
+        "ping": [["processFeatures", "processFeatures.wait"]]
       },
       "marked_outputs": {
         "box": false,
         "ping": false
       },
       "parameters": {
-        "inCRS": "epsg:7415",
+        "inCRS": "epsg:2154",
         "max_x": 0.0,
         "max_y": 0.0,
         "max_z": 0.0,
@@ -84,23 +35,12 @@
         "min_y": 0.0,
         "min_z": 0.0
       },
-      "position": [
-        223.0,
-        269.0
-      ],
-      "type": [
-        "Core",
-        "Box"
-      ]
+      "position": [223.0, 269.0],
+      "type": ["Core", "Box"]
     },
     "CJFeature_paths": {
       "connections": {
-        "value": [
-          [
-            "processFeatures",
-            "processFeatures.globals"
-          ]
-        ]
+        "value": [["processFeatures", "processFeatures.globals"]]
       },
       "marked_outputs": {
         "value": false
@@ -110,14 +50,8 @@
         "limit": 0,
         "split": true
       },
-      "position": [
-        210.0,
-        197.0
-      ],
-      "type": [
-        "Core",
-        "TextReader"
-      ]
+      "position": [210.0, 197.0],
+      "type": ["Core", "TextReader"]
     },
     "CityJSONLinesWriter": {
       "marked_inputs": {
@@ -130,14 +64,8 @@
         "prettyPrint": false,
         "recompute_offset": true
       },
-      "position": [
-        1110.0,
-        -36.0
-      ],
-      "type": [
-        "CoreIO",
-        "CityJSONLinesWriter"
-      ]
+      "position": [1110.0, -36.0],
+      "type": ["CoreIO", "CityJSONLinesWriter"]
     },
     "OGRWriter-2D-LoD12": {
       "marked_inputs": {
@@ -166,14 +94,8 @@
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
-      "position": [
-        1493.0,
-        41.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
+      "position": [1493.0, 41.0],
+      "type": ["io-gdal", "OGRWriter"]
     },
     "OGRWriter-2D-LoD13": {
       "marked_inputs": {
@@ -202,14 +124,8 @@
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
-      "position": [
-        1491.0,
-        104.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
+      "position": [1491.0, 104.0],
+      "type": ["io-gdal", "OGRWriter"]
     },
     "OGRWriter-2D-LoD22": {
       "marked_inputs": {
@@ -238,14 +154,8 @@
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
-      "position": [
-        1492.0,
-        157.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
+      "position": [1492.0, 157.0],
+      "type": ["io-gdal", "OGRWriter"]
     },
     "OGRWriter-3D-LoD12": {
       "marked_inputs": {
@@ -269,14 +179,8 @@
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
-      "position": [
-        1491.0,
-        238.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
+      "position": [1491.0, 238.0],
+      "type": ["io-gdal", "OGRWriter"]
     },
     "OGRWriter-3D-LoD13": {
       "marked_inputs": {
@@ -300,14 +204,8 @@
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
-      "position": [
-        1491.0,
-        301.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
+      "position": [1491.0, 301.0],
+      "type": ["io-gdal", "OGRWriter"]
     },
     "OGRWriter-3D-LoD22": {
       "marked_inputs": {
@@ -331,14 +229,8 @@
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
-      "position": [
-        1493.0,
-        366.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
+      "position": [1493.0, 366.0],
+      "type": ["io-gdal", "OGRWriter"]
     },
     "OGRWriter-pand": {
       "marked_inputs": {
@@ -403,131 +295,48 @@
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
-      "position": [
-        1352.0,
-        2.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
+      "position": [1352.0, 2.0],
+      "type": ["io-gdal", "OGRWriter"]
     },
     "processFeatures": {
       "connections": {
-        "CJFeatureReader.value": [
-          [
-            "CityJSONLinesWriter",
-            "features"
-          ]
-        ],
-        "CJMetadata.value": [
-          [
-            "CityJSONLinesWriter",
-            "first_line"
-          ]
-        ],
-        "CityJSONL2Mesh-LoD12.attributes": [
-          [
-            "OGRWriter-pand",
-            "attributes"
-          ]
-        ],
-        "CityJSONL2Mesh-LoD12.lod0_2d": [
-          [
-            "OGRWriter-pand",
-            "geometries"
-          ]
-        ],
-        "CityJSONL2Mesh-LoD12.meshes": [
-          [
-            "OGRWriter-3D-LoD12",
-            "geometries"
-          ]
-        ],
+        "CJFeatureReader.value": [["CityJSONLinesWriter", "features"]],
+        "CJMetadata.value": [["CityJSONLinesWriter", "first_line"]],
+        "CityJSONL2Mesh-LoD12.attributes": [["OGRWriter-pand", "attributes"]],
+        "CityJSONL2Mesh-LoD12.lod0_2d": [["OGRWriter-pand", "geometries"]],
+        "CityJSONL2Mesh-LoD12.meshes": [["OGRWriter-3D-LoD12", "geometries"]],
         "CityJSONL2Mesh-LoD12.meshes_attributes": [
-          [
-            "OGRWriter-3D-LoD12",
-            "attributes"
-          ]
+          ["OGRWriter-3D-LoD12", "attributes"]
         ],
         "CityJSONL2Mesh-LoD12.roofparts_lr": [
-          [
-            "OGRWriter-2D-LoD12",
-            "geometries"
-          ]
+          ["OGRWriter-2D-LoD12", "geometries"]
         ],
         "CityJSONL2Mesh-LoD12.roofparts_lr_attributes": [
-          [
-            "OGRWriter-2D-LoD12",
-            "attributes"
-          ]
+          ["OGRWriter-2D-LoD12", "attributes"]
         ],
-        "CityJSONL2Mesh-LoD13.meshes": [
-          [
-            "OGRWriter-3D-LoD13",
-            "geometries"
-          ]
-        ],
+        "CityJSONL2Mesh-LoD13.meshes": [["OGRWriter-3D-LoD13", "geometries"]],
         "CityJSONL2Mesh-LoD13.meshes_attributes": [
-          [
-            "OGRWriter-3D-LoD13",
-            "attributes"
-          ]
+          ["OGRWriter-3D-LoD13", "attributes"]
         ],
         "CityJSONL2Mesh-LoD13.roofparts_lr": [
-          [
-            "OGRWriter-2D-LoD13",
-            "geometries"
-          ]
+          ["OGRWriter-2D-LoD13", "geometries"]
         ],
         "CityJSONL2Mesh-LoD13.roofparts_lr_attributes": [
-          [
-            "OGRWriter-2D-LoD13",
-            "attributes"
-          ]
+          ["OGRWriter-2D-LoD13", "attributes"]
         ],
-        "CityJSONL2Mesh-LoD22.meshes": [
-          [
-            "OGRWriter-3D-LoD22",
-            "geometries"
-          ]
-        ],
+        "CityJSONL2Mesh-LoD22.meshes": [["OGRWriter-3D-LoD22", "geometries"]],
         "CityJSONL2Mesh-LoD22.meshes_attributes": [
-          [
-            "OGRWriter-3D-LoD22",
-            "attributes"
-          ]
+          ["OGRWriter-3D-LoD22", "attributes"]
         ],
         "CityJSONL2Mesh-LoD22.roofparts_lr": [
-          [
-            "OGRWriter-2D-LoD22",
-            "geometries"
-          ]
+          ["OGRWriter-2D-LoD22", "geometries"]
         ],
         "CityJSONL2Mesh-LoD22.roofparts_lr_attributes": [
-          [
-            "OGRWriter-2D-LoD22",
-            "attributes"
-          ]
+          ["OGRWriter-2D-LoD22", "attributes"]
         ],
-        "h_calc.lod12_hattr": [
-          [
-            "OGRWriter-2D-LoD12",
-            "attributes"
-          ]
-        ],
-        "h_calc.lod13_hattr": [
-          [
-            "OGRWriter-2D-LoD13",
-            "attributes"
-          ]
-        ],
-        "h_calc.lod22_hattr": [
-          [
-            "OGRWriter-2D-LoD22",
-            "attributes"
-          ]
-        ]
+        "h_calc.lod12_hattr": [["OGRWriter-2D-LoD12", "attributes"]],
+        "h_calc.lod13_hattr": [["OGRWriter-2D-LoD13", "attributes"]],
+        "h_calc.lod22_hattr": [["OGRWriter-2D-LoD22", "attributes"]]
       },
       "marked_inputs": {
         "processFeatures.globals": false,
@@ -570,14 +379,8 @@
         "require_input_globals": true,
         "require_input_wait": false
       },
-      "position": [
-        416.0,
-        146.0
-      ],
-      "type": [
-        "Core",
-        "NestedFlowchart"
-      ]
+      "position": [416.0, 146.0],
+      "type": ["Core", "NestedFlowchart"]
     }
   }
 }

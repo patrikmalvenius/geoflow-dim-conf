@@ -1,8 +1,8 @@
 version: "3.9"
-
+name: geoflow_fr
 services:
   pgdb:
-    build: ./
+    build: ./db
 
     container_name: pgdb
 
@@ -11,17 +11,17 @@ services:
 
     ports:
       - 5418:5432
-  geoflow:
-    image: geoflow-dim
+  geoflow_custom:
+    #image: geoflow-dim
+    build: ./
     volumes:
       - ./config:/config
-      - ./example_data/10_268_594/bag:/data/poly
-      - ./example_data/10_268_594/true-ortho:/data/img
-      - ./example_data/10_268_594/laz/2020_dim:/data/laz/2020_dim
-      - ./example_data/10_268_594/laz/ahn3:/data/laz/ahn3
-      - ./example_data/10_268_594/laz/ahn4:/data/laz/ahn4
+      - ./example_data/10_268_594/bati_ign:/data/poly
+      - ./example_data/10_268_594/las_in/:/data/laz/ahn3
       - ./tmp:/tmp
       - ./output:/data/output
+      - ./resources/:/dim_pipeline/resources
+      - ./run.py/:/dim_pipeline/run.py
     environment:
       PG_OUTPUT: ${PG_OUTPUT}
     tty: true

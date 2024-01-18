@@ -25,30 +25,33 @@ year_of_construction_attribute = 'oorspronkelijkbouwjaar'
 #                           LoD1 blokvorm gereconstrueerd dient te worden.
 #   select_only_for_date:   zet op 'true' als deze puntenwokl alleen op basis van de acquisitie datum geselecteerd moet worden (aanbevolen voor DIM).
 #   path:                   Lijst met LAS/LAZ bestanden
-[[input.pointclouds]]
-name = "DIM"
-date = 2020
-quality = 2
-force_low_lod = false
-select_only_for_date = true
-path = '/data/laz/2020_dim/80500_455000.laz /data/laz/2020_dim/80500_455500.laz /data/laz/2020_dim/81000_455000.laz /data/laz/2020_dim/81000_455500.laz'
+#[[input.pointclouds]]
+#name = "DIM"
+#date = 2020
+#quality = 2
+#force_low_lod = false
+#select_only_for_date = true
+#path = '/data/laz/2020_dim/80500_455000.laz /data/laz/2020_dim/80500_455500.laz /data/laz/2020_dim/81000_455000.laz /data/laz/2020_dim/81000_455500.laz'
 
 [[input.pointclouds]]
 name = "AHN3"
 quality = 1
-path = '/data/laz/ahn3/t_995178.laz /data/laz/ahn3/t_995179.laz /data/laz/ahn3/t_995180.laz /data/laz/ahn3/t_995181.laz /data/laz/ahn3/t_992518.laz /data/laz/ahn3/t_992519.laz /data/laz/ahn3/t_992520.laz /data/laz/ahn3/t_992521.laz /data/laz/ahn3/t_993848.laz /data/laz/ahn3/t_993849.laz /data/laz/ahn3/t_993850.laz /data/laz/ahn3/t_993851.laz /data/laz/ahn3/t_991188.laz /data/laz/ahn3/t_991189.laz /data/laz/ahn3/t_991190.laz /data/laz/ahn3/t_991191.laz'
+path = '/data/laz/ahn3/LHD_FXX_0380_6264_PTS_C_LAMB93_IGN69.copc.laz'
 
-[[input.pointclouds]]
-name = "AHN4"
-quality = 0
-path = '/data/laz/ahn4/t_995178.laz /data/laz/ahn4/t_995179.laz /data/laz/ahn4/t_995180.laz /data/laz/ahn4/t_995181.laz /data/laz/ahn4/t_992518.laz /data/laz/ahn4/t_992519.laz /data/laz/ahn4/t_992520.laz /data/laz/ahn4/t_992521.laz /data/laz/ahn4/t_993848.laz /data/laz/ahn4/t_993849.laz /data/laz/ahn4/t_993850.laz /data/laz/ahn4/t_993851.laz /data/laz/ahn4/t_991188.laz /data/laz/ahn4/t_991189.laz /data/laz/ahn4/t_991190.laz /data/laz/ahn4/t_991191.laz'
+#path = '/data/laz/ahn3/LHD_FXX_0380_6264_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0380_6265_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0381_6265_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0381_6266_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0382_6266_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0382_6267_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0382_6268_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0382_6269_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0382_6271_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0382_6272_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0382_6273_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0383_6269_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0383_6270_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0383_6271_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0383_6272_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0383_6273_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0383_6274_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0383_6276_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0383_6277_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0383_6278_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0384_6274_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0384_6275_PTS_C_LAMB93_IGN69.copc.laz /data/laz/ahn3/LHD_FXX_0384_6276_PTS_C_LAMB93_IGN69.copc.laz '
+
+
+#[[input.pointclouds]]
+#name = "AHN4"
+#quality = 0
+#path = '/data/laz/ahn4/t_995178.laz /data/laz/ahn4/t_995179.laz /data/laz/ahn4/t_995180.laz /data/laz/ahn4/t_995181.laz /data/laz/ahn4/t_992518.laz /data/laz/ahn4/t_992519.laz /data/laz/ahn4/t_992520.laz /data/laz/ahn4/t_992521.laz /data/laz/ahn4/t_993848.laz /data/laz/ahn4/t_993849.laz /data/laz/ahn4/t_993850.laz /data/laz/ahn4/t_993851.laz /data/laz/ahn4/t_991188.laz /data/laz/ahn4/t_991189.laz /data/laz/ahn4/t_991190.laz /data/laz/ahn4/t_991191.laz'
 
 # Algemene gebouw reconstructie parameters
 [output.reconstruction_parameters]
-GF_PROCESS_CRS="EPSG:7415"
-OUTPUT_CRS="EPSG:7415"
-CITYJSON_TRANSLATE_X=171800.0
-CITYJSON_TRANSLATE_Y=472700.0
+GF_PROCESS_CRS="EPSG:2154"
+OUTPUT_CRS="EPSG:2154"
+CITYJSON_TRANSLATE_X=380950.29999999999
+CITYJSON_TRANSLATE_Y=6263549.0
 CITYJSON_TRANSLATE_Z=0.0
 CITYJSON_SCALE_X=0.001
 CITYJSON_SCALE_Y=0.001
@@ -83,13 +86,15 @@ plane_reg__axis_symmetry=false
 # Specifieke parameters voor DIM gebouw reconstructie (kopieer parameters uit de algemene sectie hiernaartoe)
 [output.reconstruction_parameters_dim]
 optimisation_data_term=6.0
-
+GF_PROCESS_CRS="EPSG:2154"
 # Specifieke parameters voor LiDAR gebouw reconstructie (kopieer paremeters uit de algemene sectie hiernaartoe)
 [output.reconstruction_parameters_lidar]
+GF_PROCESS_CRS="EPSG:2154"
 
 # Bestandsbenaming voor tijdelijke bestanden en output bestanden
 [output]
-path = '/data/tmp'
+GF_PROCESS_CRS="EPSG:2154"
+path = '/tmp'
 
 # {bid} will be replaced by building identifier
 # {pc_name} will be replaced by input pointcloud name
@@ -107,4 +112,4 @@ building_gpkg_file = '{path}/features/{bid}/crop/{bid}.gpkg'
 # output path of building features (CityJSON Features)
 building_jsonl_file = '/data/output/features/{bid}.city.jsonl'
 metadata_json_file = '/data/output/metadata.jsonl'
-index_file = '/data/output/index.gpkg'
+index_file = '/data/output/indexx.gpkg'
