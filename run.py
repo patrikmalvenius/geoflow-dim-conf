@@ -18,13 +18,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # sys.path.append("./kinetic_partition/build")
 import libkinetic_partition
 
-ORTHO_IMG_DIR = "/azblob/bm/img/"
-TMP_IMG_DIR = "/tmp/rgb/"
-try:
-    os.mkdir(TMP_IMG_DIR)
-except:
-    pass
-
 CJSONL_PATH = "/data/output/features"
 METADATA_NL_PATH = "/dim_pipeline/resources/metadata_nl.jsonl"
 ROOFLINES_OUTPUT_TMPL = "/tmp/features/{bid}/crop/rooflines"
@@ -40,7 +33,6 @@ BLD_ID = "identificatie"
 
 EXE_CROP = "/usr/local/bin/crop"
 EXE_GEOF = "/usr/local/bin/geof"
-EXE_AZCOPY = "/usr/local/bin/azcopy"
 
 def read_toml_config(config_path):
     with open(config_path, "rb") as f:
@@ -54,236 +46,22 @@ def run_crop(config_path, verbose=False):
         args += ["--verbose"]
     return subprocess.run(args)
 
-def run_ortho_rooflines(building_index_file, max_workers, verbose=False):
-    # generate tfw metadata on raster files?
-    def read_ortho_photos(ortho_images_in, input_img_dir, args):
-        file_name_list = []
-        ortho_image_list = []
-        n_ortho_images = len(ortho_images_in)
-        i_file = 0
-        for image_in in ortho_images_in:
-            file_name = os.path.splitext(os.path.basename(image_in))[0]
-            file_name_suffix = file_name.split("_")
-            file_name_used = file_name_suffix[len(file_name_suffix) - 2] + "_" + file_name_suffix[len(file_name_suffix) - 1]
-            file_name_list.append(file_name_used)
-            meta_in = input_img_dir + file_name + ".tfw"
 
-            i_file = i_file + 1
-            #print("Read " + str(i_file) + " / " + str(n_ortho_images) + " ---> " + file_name)
-
-            ortho_image = cd.OrthoPhoto()
-            ortho_image.read_image_use_gdal(image_in)
-            if args.tif_with_tfw:
-                ortho_image.read_image_meta_from_twf(meta_in)
-            else:
-                ortho_image.read_image_meta_from_tif()
-            ortho_image_list.append(ortho_image)
-        return ortho_image_list, file_name_list
-    
-    def extract_rooflines(args, b_id, b_poly, i_building, n_building_files, ortho_image_list, building_polys, file_name_list):
-        # if not args.parallel_processing and not args.show_progress:
-        # if args.verbose:
-        #     logging.info("Generating building " + str(b_id))
-        # Extract single builing image
-        sing_b = cd.SingleBuildingImage(b_id, args.pixel_offset)
-        img_used, top_left_used, image_name_used, which_case = sing_b.get_used_images_for_poly(ortho_image_list,
-                                                               building_polys.building_bbox_dict[b_id], file_name_list)
-        if isinstance(img_used, list) and img_used == []:
-            if args.verbose:
-                logging.info(f"skipping building {b_id}, no images overlapping...")
-            return 0
-        sing_b.crop_image(img_used, top_left_used, building_polys.building_bbox_dict[b_id], which_case)
-        sing_b.write_image(sing_b.image, TMP_IMG_DIR + image_name_used + "_" + str(b_id) + ".jpg")
-
-        # write 2d footprints
-        sing_b_img_gt_footprint = copy.deepcopy(sing_b.image)
-        for poly in b_poly:
-            poly.convert_from_geo_to_pix(top_left_used, sing_b.pix_size, sing_b.bbox_pix)
-            if args.apply_polygon_buffer_filter:
-                poly.buffering_polygon(args)
-            if args.write_gt_building_image_with_footprints > 1 or \
-                    (args.write_gt_building_image_with_footprints == 1 and \
-                     not args.apply_polygon_buffer_filter and not args.merge_connected_building_polygons):
-                poly.draw_polygon(sing_b_img_gt_footprint, args.write_gt_building_image_with_footprints)
-
-        # perform partition to extract rooflines
-        img_path_read = TMP_IMG_DIR + image_name_used + "_" + str(b_id) + ".jpg"
-        sing_b.pix_points, sing_b.edges = libkinetic_partition.partition_image(img_path_read, args.lsd_scale,
-                                                                               args.num_intersection,
-                                                                               args.enable_regularise, args.verbose)
-
-        # Fitler out some points and edges based on the input 2d footprints
-        if args.apply_polygon_buffer_filter:
-            sing_b.filter_partitions(b_poly)
-
-        # Add points and edges from input 2d footprints
-        # if args.add_footprint_to_rooflines:
-        #     if args.merge_connected_building_polygons:
-        #         for b_ft_id in building_polys.merged_to_original_map[i_building]:
-        #             for b_ft_poly in building_polys.orig_building_polygon_dict[b_ft_id]:
-        #                 b_ft_poly.convert_from_geo_to_pix(top_left_used, sing_b.pix_size, sing_b.bbox_pix)
-        #                 sing_b.add_footprint_lines(b_ft_poly)
-        #                 if args.write_gt_building_image_with_footprints == 1:
-        #                     b_ft_poly.draw_polygon(sing_b_img_gt_footprint,
-        #                                            args.write_gt_building_image_with_footprints)
-        #     else:
-        #         for poly in b_poly:
-        #             sing_b.add_footprint_lines(poly)
-
-        if not args.write_building_image:
-            os.remove(img_path_read)
-
-        # Assign each edge a shape for attribute parsing
-        # NB i_building not used here if args.merge_connected_building_polygons==False
-        used_shapes, used_polys_pix_center = sing_b.collect_centers_and_shapes(args, i_building, b_id, building_polys, top_left_used)
-        sing_b.attach_shape_to_edge(used_shapes, used_polys_pix_center)
-
-        # write footprint
-        if args.write_gt_building_image_with_footprints > 0:
-            sing_b.write_image(sing_b_img_gt_footprint,
-                               output_img_gt_footprint_dir + image_name_used + "_" + str(b_id) + "_footprint.jpg")
-        del sing_b_img_gt_footprint
-
-        # write results to images
-        sing_b_img_poly = copy.deepcopy(sing_b.image)
-        sing_b.draw_partitions(sing_b_img_poly)
-        sing_b.sbi_convert_from_pix_to_geo(top_left_used, sing_b.pix_size, sing_b.bbox_pix)
-        # if args.write_building_image_with_rooflines:
-        #     sing_b.write_image(sing_b_img_poly,
-        #                        output_img_rooflines_dir + image_name_used + "_" + str(b_id) + "_rooflines.jpg")
-        del sing_b_img_poly
-
-        # write ground truth rooflines if set to true
-        # sing_b_img_poly_gt = copy.deepcopy(sing_b.image)
-        # if args.write_gt_building_image_with_rooflines:
-        #     if args.merge_connected_building_polygons:
-        #         for b_gt_id in building_polys.merged_to_original_map[i_building]:
-        #             if b_gt_id in building_polys.building_gt_rooflines_dict:
-        #                 for b_gt_poly in building_polys.building_gt_rooflines_dict[b_gt_id]:
-        #                     b_gt_poly.convert_from_geo_to_pix(top_left_used, sing_b.pix_size, sing_b.bbox_pix)
-        #                     b_gt_poly.draw_polygon(sing_b_img_poly_gt, 1)
-        #     else:
-        #         if b_id in building_polys.building_gt_rooflines_dict:
-        #             for b_gt_poly in building_polys.building_gt_rooflines_dict[b_id]:
-        #                 b_gt_poly.convert_from_geo_to_pix(top_left_used, sing_b.pix_size, sing_b.bbox_pix)
-        #                 b_gt_poly.draw_polygon(sing_b_img_poly_gt, 1)
-        #     sing_b.write_image(sing_b_img_poly_gt,
-        #                        output_img_gt_rooflines_dir + image_name_used + "_" + str(b_id) + "_rooflines_gt.jpg")
-        # del sing_b_img_poly_gt
-
-        # write lines to gpkg
-        # initialize the polygons to write if there is predict data
-        rooflines_out = cd.WPolygons()
-        rooflines_out_path = ROOFLINES_OUTPUT_TMPL.format(bid=str(b_id))
-        rooflines_out.initialize_gpkg_for_write(rooflines_out_path, building_polys)
-        rooflines_out.add_partition_lines(b_id, sing_b, used_shapes)
-        rooflines_out.close_file(args)
-        n_edges = len(sing_b.edges)
-
-        # write config to 
-        # with open(BUILDING_CFG_TMPL.format(bid=str(b_id)), 'a') as cfg_file:
-        #     cfg_file.write("\nINPUT_ROOFLINES = '{}.gpkg'".format(rooflines_out_path))
-        del sing_b.image
-        del sing_b.pix_points
-        del sing_b.edges
-        del sing_b
-        del img_used
-        del top_left_used
-        del image_name_used
-        del which_case
-        del img_path_read
-
-        return n_edges
-
-    # configuration parameters
-    class args:
-        building_id = BLD_ID
-        layer_name = "geom"
-        building_buffer_dis = 1.0
-        layer_filter = "pc_source='DIM'"
-        merge_connected_building_polygons = False
-        write_gt_building_image_with_rooflines = False
-        write_building_image = False
-        tif_with_tfw = False
-        polygon_buffer = 60
-        pixel_offset = 100
-        apply_polygon_buffer_filter = True
-        write_gt_building_image_with_footprints = 0
-        # kinetic partition
-        lsd_scale = 0.8
-        num_intersection = 1
-        enable_regularise = True
-        verbose = True
-
-    args.verbose = verbose
-
-    # scan dir with ortho images
-    # ortho_images_in = glob.glob(ORTHO_IMG_DIR + "*.tif")
-    # ortho_image_list, file_name_list = read_ortho_photos(ortho_images_in, ORTHO_IMG_DIR, args)
-
-    # read building footprints
-    building_polys = cd.WPolygons()
-    building_polys.read_poly(building_index_file, args)
-
-    i_building = 0
-    
-    n_building_files = len(building_polys.building_polygon_dict.items())
-    # Loop all building polygons to crop image
-    for b_id, b_poly in building_polys.building_polygon_dict.items():
-        n_edges = extract_rooflines(args, b_id, b_poly, i_building, n_building_files, ortho_image_list, building_polys, file_name_list)
-        i_building += 1
-        logging.debug(f"Extracted rooflines for bid='{b_id}' n_edges={n_edges}")
-   
-    # NB this does not work, code is not thread safe
-    # with ThreadPoolExecutor(max_workers=max_workers) as executor:
-    #     futures = {executor.submit(extract_rooflines, args, b_id, b_poly, i_building, n_building_files, ortho_image_list, building_polys, file_name_list): b_id for b_id, b_poly in building_polys.building_polygon_dict.items()}
-
-    #     for future in as_completed(futures):
-    #         b_id = futures[future]
-    #         logging.info(f"Extracted rooflines for bid='{b_id}' skipped={future.result()}")
-
-    building_polys.close_file(args)
-    del building_polys
 
 # 3 Run gf reconstruction
 def run_reconstruct(building_index_file, max_workers, skip_ortholines, config_data=None, verbose=False):
     def get_buildings(building_index_file):
         buildings = list()
-        logging.info("TUSENTALSBANANAER")
-        tmp = tempfile.NamedTemporaryFile()
-        #FIOOOOOOOOOOOOOOONA CREAAAAAAAAAAAAAAAAAAAAAAATEEEE????????????
-        #ELLER SKAPA EN TOM GKPG MAN KAN ANVANDA???????????????
-        #ELLER FORST OPEN W SEN OPEN R?????
-        with fiona.open(building_index_file, ) as building:
-            logging.info("building.crs")
-            logging.info(building.crs)
 
-           # with fiona.open("centroids.gpkg", mode="w", crs=fiona.crs.from_epsg(2154), driver="GPKG",  schema=building.schema,) as dst:
-            #    for feat in building:
-                    # If any feature's polygon is facing "down" (has rings
-                    # wound clockwise), its rings will be reordered to flip
-                    # it "up".
-             #       geom = feat.geometry
-              #      dst.write(fiona.Feature(geometry=geom, properties=feat.properties))
-              #  logging.info("dst.crs")
-              #  logging.info(dst.crs)
-              #  with fiona.open("centroids.gpkg") as newbuildings:
-               #     logging.info("newbuildings.crs")
-                #    logging.info(newbuildings.crs)
+        with fiona.open(building_index_file, ) as building:
+
             buildings = [bld for bld in building]
 
-                #logging.info(buildings.crs)
+
  
         return buildings
-    def run_geoflow(building, skip_ortholines, config_data, verbose):
-        #¸logging.info("building")
-        #logging.info(building)
-        #logging.info("skip_ortholines")
-        #logging.info(skip_ortholines)
-        #logging.info("config_data")
-        #logging.info(config_data)
-        #logging.info("verbose")
-        #logging.info(verbose)
+    def run_geoflow(building, config_data, verbose):
+
         def format_parameters(parameters, args):
             for (key, val) in parameters.items():
                 if isinstance(val, bool):
@@ -296,20 +74,16 @@ def run_reconstruct(building_index_file, max_workers, skip_ortholines, config_da
 
         args = [EXE_GEOF]
         bid = str(building.properties[BLD_ID])
-        if building.properties["pc_source"] == "DIM" and not skip_ortholines:
-            args.append(GF_FLOWCHART_DIM)
-        else:
-            args.append(GF_FLOWCHART_LIDAR)
+
+
+        args.append(GF_FLOWCHART_LIDAR)
         args += ["-c", BUILDING_CFG_TMPL.format(bid=bid)]
 
         if verbose:
             args += ["--verbose"]
        
-        if building.properties["pc_source"] == "DIM":
-            args.append(f"--INPUT_ROOFLINES={ROOFLINES_OUTPUT_TMPL.format(bid=bid)}.gpkg")
-            format_parameters(config_data['output']['reconstruction_parameters_dim'], args)
-        else:
-            format_parameters(config_data['output']['reconstruction_parameters_lidar'], args)
+
+        format_parameters(config_data['output']['reconstruction_parameters_lidar'], args)
         #logging.info("args")
         #logging.info(args)
         
@@ -319,7 +93,7 @@ def run_reconstruct(building_index_file, max_workers, skip_ortholines, config_da
 
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
 
-        futures = {executor.submit(run_geoflow, building, skip_ortholines, config_data, verbose): building for building in buildings}
+        futures = {executor.submit(run_geoflow, building, config_data, verbose): building for building in buildings}
 
         for future in as_completed(futures):
             # command = futures[future]
@@ -342,37 +116,7 @@ def run_tile_merge(path, verbose):
     if result.returncode != 0:
         logging.warning("Error occurred while executing command '{}'".format(" ".join(result.args)))
 
-class azcopyResource:
 
-    def __init__(self, sas_key, container, endpoint):
-        self.sas_key = str(sas_key).replace('"',"")
-        self.container = container
-        self.endpoint = endpoint
-
-    def get_container_url(self, az_path=""):
-        return f"{self.endpoint}/{self.container}/{az_path}?{self.sas_key}"
-
-    def transfer(self, source, destination):
-        shell_command = f"azcopy copy --recursive '{source}' '{destination}'"
-        return_code = 0
-        logging.info(f"Executing: {shell_command}")
-        for i in range(0, 5):
-            try: 
-                proc = subprocess.run(shell_command, check=True, shell=True, text=True, capture_output=True)
-                logging.info(proc.stdout)
-                logging.info(proc.stderr)
-                break
-            except subprocess.CalledProcessError as e:
-                logging.error(e)
-                logging.info(f"azcopy upload failed, retrying ({i+1}/5)")
-    
-    def upload(self, src, az_path):
-        dest = self.get_container_url(az_path)
-        self.transfer(src, dest)
-
-    def download(self, az_path, dest):
-        src = self.get_container_url(az_path)
-        self.transfer(src, dest)
 
 @click.group(invoke_without_command=True)
 @click.pass_context
@@ -397,72 +141,17 @@ def cli(ctx, config, loglevel, jobs, keep_tmp_data, only_reconstruct):
     path = config_data['output']['path']
     building_index_path = indexfile.format(path=path)
 
-    skip_ortholines = False
-    for pc in config_data['input']['pointclouds']:
-        if "DIM" == pc["name"]:
-            if 'force_low_lod' in pc:
-                skip_ortholines = pc['force_low_lod']
-            else:
-                skip_ortholines = False
-            skip_ortholines = (not "path_trueortho" in pc) or skip_ortholines
-    # output_city_json_path = "/data/output/tile.city.json"
+    skip_ortholines = True
+
 
     logging.info(f"Config read from {config}")
 
-    # check if azure blobs are specified, and download files
-    if  os.environ.get("AZBLOB_GFDATA_SAS_KEY") and \
-        os.environ.get("AZBLOB_GFDATA_CONTAINER") and \
-        os.environ.get("AZBLOB_GFDATA_ENDPOINT"):
-        azb = azcopyResource(
-            sas_key=os.environ.get("AZBLOB_GFDATA_SAS_KEY"),
-            container=os.environ.get("AZBLOB_GFDATA_CONTAINER"),
-            endpoint=os.environ.get("AZBLOB_GFDATA_ENDPOINT")
-        )
-        logging.info("Downloading pointclouds from Azure BLOB storage...")
-        remote_path = Path("")
-        if os.environ.get("AZBLOB_GFDATA_PATH"):
-            remote_path = Path(str(os.environ.get("AZBLOB_GFDATA_PATH")).replace('"', ""))
-        for pc in config_data['input']['pointclouds']:
-            for filepath_ in pc['path'].split(" "):
-                if '/azblob/gfdata' in str(filepath_):
-                    filepath = Path(filepath_)
-                    filepath.parent.mkdir(parents=True, exist_ok=True)
-                    azb.download(
-                        az_path=remote_path / filepath.relative_to('/azblob/gfdata'),
-                        dest=filepath)
-    if  os.environ.get("AZBLOB_BM_SAS_KEY") and \
-        os.environ.get("AZBLOB_BM_CONTAINER") and \
-        os.environ.get("AZBLOB_BM_ENDPOINT"):
-        azb = azcopyResource(
-            sas_key=os.environ.get("AZBLOB_BM_SAS_KEY"),
-            container=os.environ.get("AZBLOB_BM_CONTAINER"),
-            endpoint=os.environ.get("AZBLOB_BM_ENDPOINT")
-        )
-        logging.info("Downloading DIM data from Azure BLOB storage...")
-        for pc in config_data['input']['pointclouds']:
-            for filepath_ in pc['path'].split(" "):
-                if ('/azblob/bm' in str(filepath_)):
-                    filepath = Path(filepath_)
-                    filepath.parent.mkdir(parents=True, exist_ok=True)
-                    azb.download(
-                        az_path=filepath.relative_to('/azblob/bm'),
-                        dest=filepath)
-            if pc['name'] == 'DIM':
-                for filepath_ in pc['path_trueortho'].split(" "):
-                    if ('/azblob/bm' in str(filepath_)):
-                        filepath = Path(filepath_)
-                        tfw_fp = filepath.with_suffix('.tfw')
-                        azb.download(
-                            az_path=tfw_fp.relative_to('/azblob/bm'),
-                            dest=Path(ORTHO_IMG_DIR) / tfw_fp.name)
     
     if not only_reconstruct:
         logging.info("Pointcloud selection and cropping...")
         run_crop(config, loglvl <= logging.DEBUG)
         
-        if not skip_ortholines:
-            logging.info("Roofline extraction from true orthophotos...")
-            run_ortho_rooflines(building_index_path, jobs, loglvl <= logging.DEBUG)
+
 
     logging.info("Building reconstruction...")
     run_reconstruct(building_index_path, jobs, skip_ortholines, config_data, loglvl <= logging.DEBUG)
