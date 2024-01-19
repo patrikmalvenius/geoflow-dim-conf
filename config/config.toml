@@ -52,20 +52,20 @@ GF_PROCESS_CRS="EPSG:5698"
 OUTPUT_CRS="EPSG:5698"
 CITYJSON_TRANSLATE_X=380950.29999999999
 CITYJSON_TRANSLATE_Y=6263549.0
-CITYJSON_TRANSLATE_Z=0.0
+CITYJSON_TRANSLATE_Z=82.7
 CITYJSON_SCALE_X=0.001
 CITYJSON_SCALE_Y=0.001
 CITYJSON_SCALE_Z=0.001
 
 line_detect__epsilon=1.0
 lod13__step_height=3.0
-optimisation_data_term=8.0
-plane_detect__k=15
+optimisation_data_term=5.0
+plane_detect__k=30
 plane_detect__epsilon=0.3
-plane_detect__min_points=15
+plane_detect__min_points=30
 plane_detect__normal_angle=0.75
 thres_alpha=0.25
-thres_reg_line_dist=0.8
+thres_reg_line_dist=0.5
 thres_reg_line_ext=3.0
 clip_ground=true
 
@@ -80,7 +80,7 @@ plane_reg__angle=10.0
 plane_reg__offset=0.4
 plane_reg__parallelism=false
 plane_reg__orthogonality=false
-plane_reg__coplanarity=false
+plane_reg__coplanarity=true
 plane_reg__axis_symmetry=false
 
 # Specifieke parameters voor DIM gebouw reconstructie (kopieer parameters uit de algemene sectie hiernaartoe)

@@ -29,7 +29,7 @@
       "str",
       "/mnt/Data/LocalData/temp/one/reconstruct/NL.IMBAG.Pand.1676100000437038.city.jsonl"
     ],
-    "clip_ground": ["", "bool", true],
+    "clip_ground": ["", "bool", false],
     "line_detect__epsilon": ["", "float", 1.0],
     "lod13__step_height": ["", "float", 3.0],
     "lod1_extrude_to_max": ["", "bool", false],

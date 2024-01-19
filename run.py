@@ -333,10 +333,10 @@ def run_tile_merge(path, verbose):
     args = ["geof", GF_FLOWCHART_MERGE_FEATURES] 
     args.append(f"--path_features_input_file={path}/features.txt") 
     args.append(f"--path_metadata={METADATA_NL_PATH}") 
-    args.append(f"--output_file={path}/tile")
+    args.append(f"--output_file=output/tile")
     args.append(f"--output_ogr={DB_OUTPUT_STRING}")
-    if verbose:
-        args += ["--verbose"]
+
+    args += ["--verbose"]
     logging.info(" ".join(args))
     result = subprocess.run(args)
     if result.returncode != 0:
