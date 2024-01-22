@@ -25,3 +25,16 @@ services:
     environment:
       PG_OUTPUT: ${PG_OUTPUT}
     tty: true
+
+  pg_3d:
+    build: ./pg3d
+    tty: true
+    container_name: pg_3d
+
+    volumes:
+      - ./data:/data
+
+    ports:
+      - 5500:5500
+    depends_on:
+      - pgdb

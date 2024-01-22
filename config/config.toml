@@ -57,17 +57,29 @@ CITYJSON_SCALE_X=0.001
 CITYJSON_SCALE_Y=0.001
 CITYJSON_SCALE_Z=0.001
 
-line_detect__epsilon=1.0
+line_detect__epsilon=0.6
 lod13__step_height=3.0
-optimisation_data_term=5.0
-plane_detect__k=30
-plane_detect__epsilon=0.3
-plane_detect__min_points=30
+optimisation_data_term=10.0
+plane_detect__k=50
+plane_detect__epsilon=0.2
+plane_detect__min_points=10
 plane_detect__normal_angle=0.75
 thres_alpha=0.25
-thres_reg_line_dist=0.5
+thres_reg_line_dist=0.6
 thres_reg_line_ext=3.0
 clip_ground=true
+
+#line_detect__epsilon=1.0
+#lod13__step_height=3.0
+#optimisation_data_term=8.0
+#plane_detect__k=15
+#plane_detect__epsilon=0.3
+#plane_detect__min_points=15
+#plane_detect__normal_angle=0.75
+#thres_alpha=0.25
+#thres_reg_line_dist=0.8
+#thres_reg_line_ext=3.0
+#clip_ground=true
 
 # RANSAC plane detection (not recommended, disabled by default)
 plane_detect__use_ransac=false
