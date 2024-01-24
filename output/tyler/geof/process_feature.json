@@ -1,0 +1,164 @@
+{
+  "globals": {
+    "GF_PROCESS_OFFSET_OVERRIDE": ["", "bool", true],
+    "cotypes": ["", "str", ""],
+    "max_x": ["", "float", 380569.5],
+    "max_y": ["", "float", 6263952.1],
+    "max_z": ["", "float", 194.8],
+    "min_x": ["", "float", 380059.4],
+    "min_y": ["", "float", 6263442.1],
+    "min_z": ["", "float", 124.1],
+    "path_metadata": [
+      "CityJSON features metadata file",
+      "str",
+      "/data/tile.city.json"
+    ],
+    "simplify_ratio": ["", "float", 0.10000000149011612],
+    "skip_clip": ["", "bool", false]
+  },
+  "nodes": {
+    "BoundingBox": {
+      "connections": {
+        "box": [["MeshClipper", "bbox"]]
+      },
+      "marked_outputs": {
+        "box": false,
+        "ping": false
+      },
+      "parameters": {
+        "inCRS": "EPSG:2154",
+        "max_x": "{{max_x}}",
+        "max_y": "{{max_y}}",
+        "max_z": "{{max_z}}",
+        "min_x": "{{min_x}}",
+        "min_y": "{{min_y}}",
+        "min_z": "{{min_z}}"
+      },
+      "position": [636.0, 258.0],
+      "type": ["Core", "Box"]
+    },
+    "CJFeatureReader": {
+      "connections": {
+        "value": [["CityJSONL2Mesh", "jsonl_features_str"]]
+      },
+      "marked_outputs": {
+        "value": false
+      },
+      "parameters": {
+        "filepath": "{{value}}",
+        "limit": 0,
+        "split": false
+      },
+      "position": [267.0, 148.0],
+      "type": ["Core", "TextReader"]
+    },
+    "CJMetadata": {
+      "connections": {
+        "value": [["CityJSONL2Mesh", "jsonl_metadata_str"]]
+      },
+      "marked_outputs": {
+        "value": false
+      },
+      "parameters": {
+        "filepath": "{{path_metadata}}",
+        "limit": 0,
+        "split": false
+      },
+      "position": [292.0, 215.0],
+      "type": ["Core", "TextReader"]
+    },
+    "CityJSONL2Mesh": {
+      "connections": {
+        "meshes": [["Mesh2SurfaceMesh", "mesh"]]
+      },
+      "marked_inputs": {
+        "jsonl_features_str": false,
+        "jsonl_metadata_str": false
+      },
+      "marked_outputs": {
+        "attributes": true,
+        "feature_type": true,
+        "meshes": false,
+        "roofparts": false
+      },
+      "parameters": {
+        "3bag_buildings_mode": false,
+        "atribute_spec": "{{attribute_spec}}",
+        "cotypes": "{{cotypes}}",
+        "lod_filter": {
+          "Building": "{{lodBuilding}}",
+          "BuildingPart": "{{lodBuildingPart}}",
+          "BuildingInstallation": "{{lodBuildingInstallation}}",
+          "TINRelief": "{{lodTINRelief}}",
+          "Road": "{{lodRoad}}",
+          "Railway": "{{lodRailway}}",
+          "TransportSquare": "{{lodTransportSquare}}",
+          "WaterBody": "{{lodWaterBody}}",
+          "PlantCover": "{{lodPlantCover}}",
+          "SolitaryVegetationObject": "{{lodSolitaryVegetationObject}}",
+          "LandUse": "{{lodLandUse}}",
+          "CityFurniture": "{{lodCityFurniture}}",
+          "Bridge": "{{lodBridge}}",
+          "BridgePart": "{{lodBridgePart}}",
+          "BridgeInstallation": "{{lodBridgeInstallation}}",
+          "BridgeConstructionElement": "{{lodBridgeConstructionElement}}",
+          "Tunnel": "{{lodTunnel}}",
+          "TunnelPart": "{{lodTunnelPart}}",
+          "TunnelInstallation": "{{lodTunnelInstallation}}",
+          "GenericCityObject": "{{lodGenericCityObject}}"
+        },
+        "optimal_lod": true,
+        "optimal_lod_value": "2.2"
+      },
+      "position": [458.0, 153.0],
+      "type": ["CoreIO", "CityJSONL2Mesh"]
+    },
+    "Mesh2SurfaceMesh": {
+      "connections": {
+        "cgal_surface_mesh": [["MeshSimplify", "cgal_surface_mesh"]]
+      },
+      "marked_inputs": {
+        "mesh": false
+      },
+      "marked_outputs": {
+        "cgal_surface_mesh": false
+      },
+      "position": [828.0, 146.0],
+      "type": ["building-reconstruction", "Mesh2CGALSurfaceMesh"]
+    },
+    "MeshClipper": {
+      "marked_inputs": {
+        "bbox": false,
+        "mesh": false
+      },
+      "marked_outputs": {
+        "cgal_surface_mesh": false,
+        "normals": true,
+        "triangles": true
+      },
+      "parameters": {
+        "cgal_clip": false,
+        "skip_clip": "{{skip_clip}}"
+      },
+      "position": [896.0, 231.0],
+      "type": ["building-reconstruction", "MeshClipper"]
+    },
+    "MeshSimplify": {
+      "connections": {
+        "cgal_surface_mesh": [["MeshClipper", "mesh"]]
+      },
+      "marked_inputs": {
+        "cgal_surface_mesh": false
+      },
+      "marked_outputs": {
+        "cgal_surface_mesh": false
+      },
+      "parameters": {
+        "border_correction": true,
+        "stop_ratio": "{{simplify_ratio}}"
+      },
+      "position": [870.0, 185.0],
+      "type": ["building-reconstruction", "MeshSimplify"]
+    }
+  }
+}
