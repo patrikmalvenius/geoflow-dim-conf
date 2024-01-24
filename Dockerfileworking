@@ -121,7 +121,7 @@ RUN mkdir /dim_pipeline && cd /dim_pipeline && \
     python3 -m venv roofenv && \
     pip install numpy && \
     source /dim_pipeline/roofenv/bin/activate && \
-    pip3 install shapely rtree wheel click fiona numpy cjdb && \ 
+    pip3 install shapely rtree wheel click fiona numpy && \ 
     pip3 install --no-cache-dir --force-reinstall 'GDAL[numpy]'
 
 # # install opencv
@@ -169,10 +169,10 @@ COPY --from=build-crop /tmp/export/usr/ /usr
 COPY --from=pyenv /dim_pipeline/ /dim_pipeline
 COPY --from=pyenv /usr/local/bin/azcopy /usr/local/bin/azcopy
 COPY ./resources/ /dim_pipeline/resources
-COPY ./run.py /dim_pipeline/python
+COPY ./run.py /dim_pipeline/
 
 ENV LD_LIBRARY_PATH=/usr/local/lib/;/lib/x86_64-linux-gnu/
 WORKDIR /data
-#ENTRYPOINT ["/dim_pipeline/roofenv/bin/python", "/dim_pipeline/run.py"]
-#CMD ["--help"]
-CMD ["/bin/bash"]
+ENTRYPOINT ["/dim_pipeline/roofenv/bin/python", "/dim_pipeline/run.py"]
+CMD ["--help"]
+# CMD ["bash"]

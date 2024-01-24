@@ -1,17 +1,19 @@
 version: "3.9"
-name: geoflow_fr
+name: geoflow_upd
 services:
-  pgdb:
+  pgdb_upd:
     build: ./db
 
-    container_name: pgdb
-
+    container_name: pgdb_upd
+    volumes:
+      - ./data:/data
+      - ./data/pg_db:/var/lib/postgresql/data
     env_file:
       - ./pg.env
 
     ports:
-      - 5418:5432
-  geoflow_custom:
+      - 5420:5432
+  geoflow_upd:
     #image: geoflow-dim
     build: ./
     volumes:
@@ -26,15 +28,15 @@ services:
       PG_OUTPUT: ${PG_OUTPUT}
     tty: true
 
-  pg_3d:
+  pg_3d_upd:
     build: ./pg3d
     tty: true
-    container_name: pg_3d
+    container_name: pg_3d_upd
 
     volumes:
       - ./data:/data
 
     ports:
-      - 5500:5500
+      - 5600:5600
     depends_on:
-      - pgdb
+      - pgdb_upd

@@ -1,6 +1,20 @@
 docker compose run geoflow  -c /config/config.toml --keep-tmp-data --only-reconstruct -l DEBUG   
 docker compose run geoflow  -c /config/config.toml --keep-tmp-data  -l DEBUG 
 
+. /dim_pipeline/roofenv/bin/activate
+python /dim_pipeline/run.py -c /config/config.toml --keep-tmp-data  -l DEBUG
+
+cjio --suppress_msg tile.city.json export jsonl tile.city.jsonl 
+cjdb import -H pgdb_upd -U magic -d magic -s cjdb  -f tile.city.jsonl
+
+docker run -v D:\docker\dockers\geoflow-dim-conf\output:/data  3dgi/tyler:0 tyler --metadata data/tile.city.json --features data/features --output data/3dtiles --3dtiles-metadata-class building --object-type Building --object-type BuildingPart
+
+docker run  -e RUST_LOG=debug -e PROJ_DATA=/usr/local/share/proj -e TYLER_RESOURCES_DIR=/data/tyler -v D:\docker\dockers\geoflow-dim-conf\output:/data   3dgi/tyler:0 tyler  --metadata data/tile.city.json --features data/features --output data/3dtiles  --3dtiles-metadata-class building --object-type Building --object-type BuildingPart     --object-attribute identificatie:string 
+
+
+
+"PG:dbname=magic active_schema=public user=magic port=5432 host=pgdb_upd password=magic"
+
 FOR DOCKER RUN
 
 docker run  \

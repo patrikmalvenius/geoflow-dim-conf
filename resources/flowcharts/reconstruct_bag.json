@@ -213,7 +213,7 @@
       },
       "marked_outputs": {
         "faces": false,
-        "labels": false,
+        "labels": true,
         "mesh": false,
         "multisolid": false
       },
@@ -238,7 +238,7 @@
       },
       "marked_outputs": {
         "faces": false,
-        "labels": false,
+        "labels": true,
         "mesh": false,
         "multisolid": false
       },
@@ -263,7 +263,7 @@
       },
       "marked_outputs": {
         "faces": false,
-        "labels": false,
+        "labels": true,
         "mesh": false,
         "multisolid": false
       },
