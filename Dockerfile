@@ -122,6 +122,7 @@ RUN mkdir /dim_pipeline && cd /dim_pipeline && \
     pip install numpy && \
     source /dim_pipeline/roofenv/bin/activate && \
     pip3 install shapely rtree wheel click fiona numpy cjdb && \ 
+    pip3 install 'cjio[export,reproject,validate,triangulate]' &&\
     pip3 install --no-cache-dir --force-reinstall 'GDAL[numpy]'
 
 # # install opencv

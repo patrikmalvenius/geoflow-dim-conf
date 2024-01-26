@@ -9,6 +9,7 @@ docker compose run geoflow  -c /config/config.toml --keep-tmp-data  -l DEBUG
 #make sure you activate the venv first
 . /dim_pipeline/roofenv/bin/activate
 python /dim_pipeline/run.py -c /config/config.toml --keep-tmp-data  -l DEBUG
+python /dim_pipeline/run.py -c /config/config.toml --keep-tmp-data  --only-reconstruct -l DEBUG
 
 cjio --suppress_msg tile.city.json export jsonl tile.city.jsonl 
 cjdb import -H pgdb_upd -U magic -d magic -s cjdb  -f tile.city.jsonl
