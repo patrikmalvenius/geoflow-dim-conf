@@ -1,6 +1,12 @@
+#with original setup (if your'e happy with your run.py)
+# also need to change some stuff in the dockerfile maybe 
+#unsurprisingly i failed to take notes of what mayhem i was wreaking there
+
 docker compose run geoflow  -c /config/config.toml --keep-tmp-data --only-reconstruct -l DEBUG   
 docker compose run geoflow  -c /config/config.toml --keep-tmp-data  -l DEBUG 
 
+#if you let the container servie live you can init the geoflow stuff from the containers terminal
+#make sure you activate the venv first
 . /dim_pipeline/roofenv/bin/activate
 python /dim_pipeline/run.py -c /config/config.toml --keep-tmp-data  -l DEBUG
 

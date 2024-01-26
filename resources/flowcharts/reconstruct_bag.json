@@ -49,8 +49,8 @@
     "plane_reg__coplanarity": ["", "bool", false],
     "plane_reg__axis_symmetry": ["", "bool", false],
     "skip_attribute_name": ["", "str", "kas_warenhuis"],
-    "skip_lod12": ["", "bool", false],
-    "skip_lod13": ["", "bool", false],
+    "skip_lod12": ["", "bool", true],
+    "skip_lod13": ["", "bool", true],
     "skip_lod22": ["", "bool", false],
     "thin_nth": ["", "int", 0],
     "thres_alpha": ["", "float", 0.25],
@@ -140,7 +140,7 @@
       },
       "parameters": {
         "dissolve_all_interior": false,
-        "dissolve_outside_fp": true,
+        "dissolve_outside_fp": false,
         "dissolve_seg_edges": true,
         "dissolve_step_edges": true,
         "skip_execution": "{{skip_lod13}}",
@@ -194,7 +194,7 @@
       },
       "parameters": {
         "dissolve_all_interior": true,
-        "dissolve_outside_fp": true,
+        "dissolve_outside_fp": false,
         "dissolve_seg_edges": false,
         "dissolve_step_edges": false,
         "skip_execution": "{{skip_lod12}}",
@@ -327,7 +327,7 @@
         "geometry_lod12": false,
         "geometry_lod13": false,
         "geometry_lod22": false,
-        "part_attributes": false
+        "part_attributes": true
       },
       "parameters": {
         "CRS": "{{OUTPUT_CRS}}",

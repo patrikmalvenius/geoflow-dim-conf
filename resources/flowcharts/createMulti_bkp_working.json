@@ -1,0 +1,386 @@
+{
+  "globals": {
+    "GF_PROCESS_CRS": ["", "str", "EPSG:2154"],
+    "GF_PROCESS_OFFSET_OVERRIDE": ["", "bool", true],
+    "GF_PROCESS_OFFSET_X": ["", "float", 380950.29],
+    "GF_PROCESS_OFFSET_Y": ["", "float", 0.0],
+    "GF_PROCESS_OFFSET_Z": ["", "float", 0.0],
+    "OUTPUT_CRS": ["", "str", "EPSG:2154"],
+    "output_file": ["output (glb) file", "str", ""],
+    "output_ogr": ["", "str", ""],
+    "output_overwrite_layers": ["", "bool", false],
+    "output_transactions": ["", "bool", true],
+    "path_features_input_file": [
+      "text file with on each line an input CityJSON feature path",
+      "str",
+      ""
+    ],
+    "path_metadata": ["CityJSON features metadata file", "str", ""]
+  },
+  "nodes": {
+    "Box": {
+      "connections": {
+        "ping": [["processFeatures", "processFeatures.wait"]]
+      },
+      "marked_outputs": {
+        "box": false,
+        "ping": false
+      },
+      "parameters": {
+        "inCRS": "epsg:2154",
+        "max_x": 0.0,
+        "max_y": 0.0,
+        "max_z": 0.0,
+        "min_x": 0.0,
+        "min_y": 0.0,
+        "min_z": 0.0
+      },
+      "position": [223.0, 269.0],
+      "type": ["Core", "Box"]
+    },
+    "CJFeature_paths": {
+      "connections": {
+        "value": [["processFeatures", "processFeatures.globals"]]
+      },
+      "marked_outputs": {
+        "value": false
+      },
+      "parameters": {
+        "filepath": "{{path_features_input_file}}",
+        "limit": 0,
+        "split": true
+      },
+      "position": [210.0, 197.0],
+      "type": ["Core", "TextReader"]
+    },
+    "CityJSONLinesWriter": {
+      "marked_inputs": {
+        "features": false,
+        "first_line": false
+      },
+      "parameters": {
+        "filepath": "{{output_file}}.city.json",
+        "optimal_lod": false,
+        "prettyPrint": false,
+        "recompute_offset": true
+      },
+      "position": [1110.0, -36.0],
+      "type": ["CoreIO", "CityJSONLinesWriter"]
+    },
+    "OGRWriter-2D-LoD12": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": false,
+        "do_transactions": "{{output_transactions}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "PostgreSQL",
+        "layername": "lod12_2d",
+        "only_output_mapped_attrs": true,
+        "output_attribute_names": {
+          "processFeatures.dak_deel_id": "b3_dd_id",
+          "processFeatures.h_50p": "b3_h_50p",
+          "processFeatures.h_70p": "b3_h_70p",
+          "processFeatures.h_max": "b3_h_max",
+          "processFeatures.h_min": "b3_h_min",
+          "processFeatures.identificatie": "identificatie",
+          "processFeatures.pand_deel_id": "b3_pand_deel_id"
+        },
+        "overwrite_file": false,
+        "overwrite_layer": "{{output_overwrite_layers}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [1493.0, 41.0],
+      "type": ["io-gdal", "OGRWriter"]
+    },
+    "OGRWriter-2D-LoD13": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": false,
+        "do_transactions": "{{output_transactions}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "PostgreSQL",
+        "layername": "lod13_2d",
+        "only_output_mapped_attrs": true,
+        "output_attribute_names": {
+          "processFeatures.dak_deel_id": "b3_dd_id",
+          "processFeatures.h_50p": "b3_h_50p",
+          "processFeatures.h_70p": "b3_h_70p",
+          "processFeatures.h_max": "b3_h_max",
+          "processFeatures.h_min": "b3_h_min",
+          "processFeatures.identificatie": "identificatie",
+          "processFeatures.pand_deel_id": "b3_pand_deel_id"
+        },
+        "overwrite_file": false,
+        "overwrite_layer": "{{output_overwrite_layers}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [1491.0, 104.0],
+      "type": ["io-gdal", "OGRWriter"]
+    },
+    "OGRWriter-2D-LoD22": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": false,
+        "do_transactions": "{{output_transactions}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "PostgreSQL",
+        "layername": "lod22_2d",
+        "only_output_mapped_attrs": true,
+        "output_attribute_names": {
+          "processFeatures.dak_deel_id": "b3_dd_id",
+          "processFeatures.h_50p": "b3_h_50p",
+          "processFeatures.h_70p": "b3_h_70p",
+          "processFeatures.h_max": "b3_h_max",
+          "processFeatures.h_min": "b3_h_min",
+          "processFeatures.identificatie": "identificatie",
+          "processFeatures.pand_deel_id": "b3_pand_deel_id"
+        },
+        "overwrite_file": false,
+        "overwrite_layer": "{{output_overwrite_layers}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [1492.0, 157.0],
+      "type": ["io-gdal", "OGRWriter"]
+    },
+    "OGRWriter-3D-LoD12": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": false,
+        "do_transactions": "{{output_transactions}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "PostgreSQL",
+        "layername": "lod12_3d",
+        "only_output_mapped_attrs": true,
+        "output_attribute_names": {
+          "processFeatures.identificatie": "identificatie",
+          "processFeatures.pand_deel_id": "b3_pand_deel_id"
+        },
+        "overwrite_file": false,
+        "overwrite_layer": "{{output_overwrite_layers}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [1491.0, 238.0],
+      "type": ["io-gdal", "OGRWriter"]
+    },
+    "OGRWriter-3D-LoD13": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": false,
+        "do_transactions": "{{output_transactions}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "PostgreSQL",
+        "layername": "lod13_3d",
+        "only_output_mapped_attrs": true,
+        "output_attribute_names": {
+          "processFeatures.identificatie": "identificatie",
+          "processFeatures.pand_deel_id": "b3_pand_deel_id"
+        },
+        "overwrite_file": false,
+        "overwrite_layer": "{{output_overwrite_layers}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [1491.0, 301.0],
+      "type": ["io-gdal", "OGRWriter"]
+    },
+    "OGRWriter-3D-LoD22": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": false,
+        "do_transactions": "{{output_transactions}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "PostgreSQL",
+        "layername": "lod22_3d",
+        "only_output_mapped_attrs": true,
+        "output_attribute_names": {
+          "processFeatures.identificatie": "identificatie",
+          "processFeatures.pand_deel_id": "b3_pand_deel_id"
+        },
+        "overwrite_file": false,
+        "overwrite_layer": "{{output_overwrite_layers}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [1493.0, 366.0],
+      "type": ["io-gdal", "OGRWriter"]
+    },
+    "OGRWriter-pand": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": false,
+        "do_transactions": "{{output_transactions}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "PostgreSQL",
+        "layername": "pand",
+        "only_output_mapped_attrs": true,
+        "output_attribute_names": {
+          "processFeatures.b3_dak_type": "b3_dak_type",
+          "processFeatures.b3_h_maaiveld": "b3_h_maaiveld",
+          "processFeatures.b3_kas_warenhuis": "b3_kas_warenhuis",
+          "processFeatures.b3_mutatie_dim_ahn3": "b3_mutatie_dim_ahn3",
+          "processFeatures.b3_mutatie_dim_ahn4": "b3_mutatie_dim_ahn4",
+          "processFeatures.b3_nodata_fractie_ahn3": "b3_nodata_fractie_ahn3",
+          "processFeatures.b3_nodata_fractie_ahn4": "b3_nodata_fractie_ahn4",
+          "processFeatures.b3_nodata_fractie_dim": "b3_nodata_fractie_dim",
+          "processFeatures.b3_nodata_radius_ahn3": "b3_nodata_radius_ahn3",
+          "processFeatures.b3_nodata_radius_ahn4": "b3_nodata_radius_ahn4",
+          "processFeatures.b3_nodata_radius_dim": "b3_nodata_radius_dim",
+          "processFeatures.b3_puntdichtheid_ahn3": "b3_puntdichtheid_ahn3",
+          "processFeatures.b3_puntdichtheid_ahn4": "b3_puntdichtheid_ahn4",
+          "processFeatures.b3_puntdichtheid_dim": "b3_puntdichtheiddim4",
+          "processFeatures.b3_pw_bron": "b3_pw_bron",
+          "processFeatures.b3_pw_datum": "b3_pw_datum",
+          "processFeatures.b3_pw_selectie_reden": "b3_pw_selectie_reden",
+          "processFeatures.b3_reconstructie_onvolledig": "b3_reconstructie_onvolledig",
+          "processFeatures.b3_rmse_lod12": "b3_rmse_lod12",
+          "processFeatures.b3_rmse_lod13": "b3_rmse_lod13",
+          "processFeatures.b3_rmse_lod22": "b3_rmse_lod22",
+          "processFeatures.b3_val3dity_lod12": "b3_val3dity_lod12",
+          "processFeatures.b3_val3dity_lod13": "b3_val3dity_lod13",
+          "processFeatures.b3_val3dity_lod22": "b3_val3dity_lod22",
+          "processFeatures.b3_volume_lod12": "b3_volume_lod12",
+          "processFeatures.b3_volume_lod13": "b3_volume_lod13",
+          "processFeatures.b3_volume_lod22": "b3_volume_lod22",
+          "processFeatures.begingeldigheid": "begingeldigheid",
+          "processFeatures.documentdatum": "documentdatum",
+          "processFeatures.documentnummer": "documentnummer",
+          "processFeatures.eindgeldigheid": "eindgeldigheid",
+          "processFeatures.eindregistratie": "eindregistratie",
+          "processFeatures.geconstateerd": "geconstateerd",
+          "processFeatures.identificatie": "identificatie",
+          "processFeatures.oorspronkelijkbouwjaar": "oorspronkelijkbouwjaar",
+          "processFeatures.status": "status",
+          "processFeatures.tijdstipeindregistratielv": "tijdstipeindregistratielv",
+          "processFeatures.tijdstipinactief": "tijdstipinactief",
+          "processFeatures.tijdstipinactieflv": "tijdstipinactieflv",
+          "processFeatures.tijdstipnietbaglv": "tijdstipnietbaglv",
+          "processFeatures.tijdstipregistratie": "tijdstipregistratie",
+          "processFeatures.tijdstipregistratielv": "tijdstipregistratielv",
+          "processFeatures.voorkomenidentificatie": "voorkomenidentificatie"
+        },
+        "overwrite_file": false,
+        "overwrite_layer": "{{output_overwrite_layers}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [1352.0, 2.0],
+      "type": ["io-gdal", "OGRWriter"]
+    },
+    "processFeatures": {
+      "connections": {
+        "CJFeatureReader.value": [["CityJSONLinesWriter", "features"]],
+        "CJMetadata.value": [["CityJSONLinesWriter", "first_line"]],
+        "CityJSONL2Mesh-LoD12.attributes": [["OGRWriter-pand", "attributes"]],
+        "CityJSONL2Mesh-LoD12.lod0_2d": [["OGRWriter-pand", "geometries"]],
+        "CityJSONL2Mesh-LoD12.meshes": [["OGRWriter-3D-LoD12", "geometries"]],
+        "CityJSONL2Mesh-LoD12.meshes_attributes": [
+          ["OGRWriter-3D-LoD12", "attributes"]
+        ],
+        "CityJSONL2Mesh-LoD12.roofparts_lr": [
+          ["OGRWriter-2D-LoD12", "geometries"]
+        ],
+        "CityJSONL2Mesh-LoD12.roofparts_lr_attributes": [
+          ["OGRWriter-2D-LoD12", "attributes"]
+        ],
+        "CityJSONL2Mesh-LoD13.meshes": [["OGRWriter-3D-LoD13", "geometries"]],
+        "CityJSONL2Mesh-LoD13.meshes_attributes": [
+          ["OGRWriter-3D-LoD13", "attributes"]
+        ],
+        "CityJSONL2Mesh-LoD13.roofparts_lr": [
+          ["OGRWriter-2D-LoD13", "geometries"]
+        ],
+        "CityJSONL2Mesh-LoD13.roofparts_lr_attributes": [
+          ["OGRWriter-2D-LoD13", "attributes"]
+        ],
+        "CityJSONL2Mesh-LoD22.meshes": [["OGRWriter-3D-LoD22", "geometries"]],
+        "CityJSONL2Mesh-LoD22.meshes_attributes": [
+          ["OGRWriter-3D-LoD22", "attributes"]
+        ],
+        "CityJSONL2Mesh-LoD22.roofparts_lr": [
+          ["OGRWriter-2D-LoD22", "geometries"]
+        ],
+        "CityJSONL2Mesh-LoD22.roofparts_lr_attributes": [
+          ["OGRWriter-2D-LoD22", "attributes"]
+        ],
+        "h_calc.lod12_hattr": [["OGRWriter-2D-LoD12", "attributes"]],
+        "h_calc.lod13_hattr": [["OGRWriter-2D-LoD13", "attributes"]],
+        "h_calc.lod22_hattr": [["OGRWriter-2D-LoD22", "attributes"]]
+      },
+      "marked_inputs": {
+        "processFeatures.globals": false,
+        "processFeatures.wait": false
+      },
+      "marked_outputs": {
+        "CJFeatureReader.value": true,
+        "CJMetadata.value": true,
+        "CityJSONL2Mesh-LoD12.attributes": true,
+        "CityJSONL2Mesh-LoD12.lod0_2d": true,
+        "CityJSONL2Mesh-LoD12.meshes": true,
+        "CityJSONL2Mesh-LoD12.meshes_attributes": true,
+        "CityJSONL2Mesh-LoD12.roofparts": true,
+        "CityJSONL2Mesh-LoD12.roofparts_lr": true,
+        "CityJSONL2Mesh-LoD12.roofparts_lr_attributes": true,
+        "CityJSONL2Mesh-LoD13.attributes": true,
+        "CityJSONL2Mesh-LoD13.meshes": true,
+        "CityJSONL2Mesh-LoD13.meshes_attributes": true,
+        "CityJSONL2Mesh-LoD13.roofparts": true,
+        "CityJSONL2Mesh-LoD13.roofparts_lr": true,
+        "CityJSONL2Mesh-LoD13.roofparts_lr_attributes": true,
+        "CityJSONL2Mesh-LoD22.attributes": true,
+        "CityJSONL2Mesh-LoD22.meshes": true,
+        "CityJSONL2Mesh-LoD22.meshes_attributes": true,
+        "CityJSONL2Mesh-LoD22.roofparts": true,
+        "CityJSONL2Mesh-LoD22.roofparts_lr": true,
+        "CityJSONL2Mesh-LoD22.roofparts_lr_attributes": true,
+        "PolygonTriangulator-LoD12.multi_triangle_collections": true,
+        "PolygonTriangulator-LoD12.volumes": true,
+        "PolygonTriangulator-LoD13.multi_triangle_collections": true,
+        "PolygonTriangulator-LoD22.multi_triangle_collections": true,
+        "h_calc.lod12_hattr": true,
+        "h_calc.lod13_hattr": true,
+        "h_calc.lod22_hattr": true,
+        "processFeatures.timings": false
+      },
+      "parameters": {
+        "filepath": "process_feature_multi.json",
+        "push_any_for_empty_sfterminal": false,
+        "require_input_globals": true,
+        "require_input_wait": false
+      },
+      "position": [416.0, 146.0],
+      "type": ["Core", "NestedFlowchart"]
+    }
+  }
+}

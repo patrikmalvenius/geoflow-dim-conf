@@ -13,7 +13,7 @@ services:
 
     ports:
       - 5420:5432
-  geoflow_upd:
+  geoflow-dim:
     #image: geoflow-dim
     build: ./
     volumes:
