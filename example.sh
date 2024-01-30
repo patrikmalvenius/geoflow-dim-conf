@@ -10,9 +10,14 @@ docker compose run geoflow  -c /config/config.toml --keep-tmp-data  -l DEBUG
 . /dim_pipeline/roofenv/bin/activate
 python /dim_pipeline/run.py -c /config/config.toml --keep-tmp-data  -l DEBUG
 python /dim_pipeline/run.py -c /config/config.toml --keep-tmp-data  --only-reconstruct -l DEBUG
-
+#need to upgrade cjio before running this; change dockerfile so this isnt needed!!
 cjio --suppress_msg tile.city.json export jsonl tile.city.jsonl 
-cjdb import -H pgdb_upd -U magic -d magic -s cjdb  -f tile.city.jsonl
+cjio --suppress_msg tile2.city.json export jsonl tile2.city.jsonl 
+
+cjdb import -H pgdb_upd -U magic -d magic -s cjdb2  -f tile.city.jsonl
+
+cjdb import -H pgdb_upd -U magic -d magic -s cjdb4  -f tile2.city.jsonl 
+
 
 docker run -v D:\docker\dockers\geoflow-dim-conf\output:/data  3dgi/tyler:0 tyler --metadata data/tile.city.json --features data/features --output data/3dtiles --3dtiles-metadata-class building --object-type Building --object-type BuildingPart
 
