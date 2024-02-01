@@ -107,3 +107,7 @@ geom as (select object_id,   ST_GeomFromText('MULTIPOLYGONZ('||replace(replace(r
  as lod22 from dynamite group by object_id), 
 toot as (select lod22, geom.object_id, city_object.attributes from geom, city_object where  city_object.object_id = geom.object_id)
 INSERT INTO buildings(id, buildingpart, json_attributes, wkb_geometry) select toot.object_id, 'wall', toot.attributes, toot.lod22 from toot;
+
+--random hex colors....
+
+UPDATE buildings SET color = concat('#',lpad(to_hex(round(random() * 10000000)::int8),6,'0'));

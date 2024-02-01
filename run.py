@@ -108,7 +108,7 @@ def run_tile_merge(path, verbose):
     args.append(f"--path_features_input_file={path}/features.txt") 
     args.append(f"--path_metadata={METADATA_NL_PATH}") 
     args.append(f"--output_file=output/tile")
-    args.append(f"--output_ogr={DB_OUTPUT_STRING}")
+    #args.append(f"--output_ogr={DB_OUTPUT_STRING}")
 
     args += ["--verbose"]
     logging.info(" ".join(args))

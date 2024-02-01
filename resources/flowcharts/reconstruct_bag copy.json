@@ -1,9 +1,9 @@
 {
   "globals": {
-    "BID": ["Building identifier", "str", ""],
-    "CITYJSON_SCALE_X": ["", "float", 0.001],
-    "CITYJSON_SCALE_Y": ["", "float", 0.001],
-    "CITYJSON_SCALE_Z": ["", "float", 0.001],
+    "BID": ["Building identifier", "str", "NL.IMBAG.Pand.1676100000437038"],
+    "CITYJSON_SCALE_X": ["", "float", 0.0010000000474974513],
+    "CITYJSON_SCALE_Y": ["", "float", 0.0010000000474974513],
+    "CITYJSON_SCALE_Z": ["", "float", 0.0010000000474974513],
     "CITYJSON_TRANSLATE_X": ["", "float", 380950.29],
     "CITYJSON_TRANSLATE_Y": ["", "float", 6263549.0],
     "CITYJSON_TRANSLATE_Z": ["", "float", 0.0],

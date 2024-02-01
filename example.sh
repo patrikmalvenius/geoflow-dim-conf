@@ -8,15 +8,24 @@ docker compose run geoflow  -c /config/config.toml --keep-tmp-data  -l DEBUG
 #if you let the container servie live you can init the geoflow stuff from the containers terminal
 #make sure you activate the venv first
 . /dim_pipeline/roofenv/bin/activate
+#the first run on a dataset creates the correct translation settings which need to be copied to the metadata file. i have nt really understood
+#how the translation is calculated; it is not something simple as NE, centroid of BBOX but is the same for the whole dataset
+#intriguing!!
 python /dim_pipeline/run.py -c /config/config.toml --keep-tmp-data  -l DEBUG
 python /dim_pipeline/run.py -c /config/config.toml --keep-tmp-data  --only-reconstruct -l DEBUG
 #need to upgrade cjio before running this; change dockerfile so this isnt needed!!
+# pip install cjio -U
 cjio --suppress_msg tile.city.json export jsonl tile.city.jsonl 
 cjio --suppress_msg tile2.city.json export jsonl tile2.city.jsonl 
 
-cjdb import -H pgdb_upd -U magic -d magic -s cjdb2  -f tile.city.jsonl
+cjdb import -H pgdb_upd -U magic -d magic -s roq  -f tile.city.jsonl
 
 cjdb import -H pgdb_upd -U magic -d magic -s cjdb4  -f tile2.city.jsonl 
+
+
+#creation of 3dtiles
+pg2b3dm -h pgdb_upd -U magic -c wkb_geometry -t roq.buildings -d magic -a id,buildingpart,color  # --add_outlines if you wish
+
 
 
 docker run -v D:\docker\dockers\geoflow-dim-conf\output:/data  3dgi/tyler:0 tyler --metadata data/tile.city.json --features data/features --output data/3dtiles --3dtiles-metadata-class building --object-type Building --object-type BuildingPart
